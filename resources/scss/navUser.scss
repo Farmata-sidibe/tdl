@@ -1,0 +1,59 @@
+
+
+.header{
+    .nav_user {
+        background: #F6F3EC;
+        .containe_responsive{
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 1040px){
+
+
+
+    .header{
+
+        background-image: linear-gradient(rgba(0, 0, 0, 0.326), #472f368e
+        ), url('../image/juan-encalada-_ENQdIjyPcA-unsplash.jpg');
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+
+        .nav_user {
+            background: transparent;
+            .containe_nav_user{
+                display: none;
+            }
+            .containe_responsive{
+                display: flex;
+            }
+        }
+
+        .header_product{
+            background: transparent;
+            padding-top: 137px;
+            .item_img{
+                display: none;
+            }
+            .item_text{
+                h1{
+                    font-size: 2em;
+                    color: aliceblue;
+                }
+                h2{
+                    font-size: 1.5em;
+                }
+                p{
+                    font-size: 13px;
+                    color: aliceblue;
+
+                }
+            }
+        }
+
+
+    }
+}
