@@ -3,7 +3,7 @@
 .container{
     background-color: rgb(186, 15, 84);
     h1{
-        font-size: 35px;
+        font-size: 3em;
         font-weight: bold;
         color: bisque;
     }
@@ -29,7 +29,7 @@ section{
     margin-top: 100px;
 
     h2{
-        font-size: 30px;
+        font-size: 2.5em;
         font-weight: bold;
         text-align: center;
     }
@@ -148,6 +148,10 @@ h3{
     overflow: hidden;
 }
 
+
+.active{
+        color: #FF91B2;
+}
 
 // responsive
 

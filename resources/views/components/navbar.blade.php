@@ -1,6 +1,6 @@
 <nav class="flex justify-between items-center w-[92%]  mx-auto bg-white">
     <div>
-        <a href="" class="h-8 w-auto">
+        <a href="/" class="h-8 w-auto">
             <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
         </a>
     </div>
@@ -21,7 +21,7 @@
             </li>
             <li>
                 <a class="hover:text-[#9CC4B9] hover:border-b-2 hover:divide-y hover:border-[#FF91B2] inline-block "
-                    href="#">Blog</a>
+                    href="blog">Blog</a>
             </li>
         </ul>
     </div>

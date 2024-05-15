@@ -1,0 +1,31 @@
+
+    .nav_user {
+        background: #F6F3EC;
+        .containe_responsive{
+            display: none;
+        }
+    }
+
+
+
+// Product list
+
+@media screen and (max-width: 1040px){
+
+        .nav_user {
+            background: transparent;
+            .containe_nav_user{
+                display: none;
+            }
+            .containe_responsive{
+                display: flex;
+                background: #F6F3EC;
+                padding-top: 0;
+                display: flex;
+                height: 80px;
+                justify-content: center;
+            }
+        }
+
+}
+

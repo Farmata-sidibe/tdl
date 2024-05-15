@@ -1,6 +1,8 @@
 <?php
-
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Scrapping\ScrapeController;
+use App\Http\Controllers\ListeController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,19 +20,27 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
-
-Route::get('/product', function () {
-    return view('product');
-});
-
-Route::get('/create-list', function () {
-    return view('create-list')->name('create-list');
-});
 Route::get('/blog', function () {
-    return view('blog')->name('blog');
+    return view('blog');
+});
+
+Route::resource('listes', ListeController::class);
+
+
+Route::group(['prefix' => 'product'], function () {
+    Route::get('/', [ScrapeController::class, 'fetchData'])->name('product');
+});
+
+
+Route::group(['prefix' => 'liste'], function () {
+    Route::get('/create-list', function () {
+        return view('create-list');
+    });
+});
+
+
+Route::get('/params', function () {
+    return view('params');
 });
 
 
@@ -46,3 +56,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// ScrappingController
+// Route::get('/scrape', ScrappingController::class . '@scrape');

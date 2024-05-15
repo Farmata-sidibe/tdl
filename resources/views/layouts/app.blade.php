@@ -15,13 +15,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css','resources/scss/app.scss'])
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../path/to/flowbite/dist/datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+    @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/scss/navUser.scss', 'resources/scss/product.scss'])
 
 </head>
 
 <body class="font-comfortaa antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen bg-[#F6F3EC] ">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
@@ -38,6 +41,8 @@
             {{ $slot }}
         </main>
     </div>
+
+
 
     @vite('resources/js/app.js')
 </body>
