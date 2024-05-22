@@ -14,7 +14,7 @@ class Liste extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'title',
         'description',
         'dateBirth',
         'patner',
@@ -22,7 +22,7 @@ class Liste extends Model
         'user_id',
     ];
 
-     /**
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
@@ -42,10 +42,14 @@ class Liste extends Model
     }
 
 
-    public function cagnotte():HasOne
+    public function cagnotte(): HasOne
     {
         return $this->hasOne(Cagnotte::class);
     }
 
-
+    public function updateListe(array $data)
+    {
+        $this->validate($data);
+        $this->update($data);
+    }
 }

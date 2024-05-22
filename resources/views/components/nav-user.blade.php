@@ -32,7 +32,7 @@
                 <div class=" sm:flex sm:items-center">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button class="inline-flex items-center px-[2px] py-[10px] border border-transparent text-sm leading-4 font-medium rounded-[50%] text-gray-500 dark:text-gray-400  dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                            <button class="inline-flex items-center px-[2px] py-[10px] border border-transparent text-sm leading-4 font-medium rounded-[50%] text-gray-500 light:text-gray-400  light:bg-gray-800 hover:text-gray-700 light:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                                 <div>@svg('params', ['width'=>25, 'height'=>25, 'fill'=>'#505050'])</div>
 
                                 <div class="ms-1">
@@ -48,7 +48,7 @@
                                 {{ __('Profil') }}
                             </x-dropdown-link>
 
-                            <a href="/params" class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition duration-150 ease-in-out">
+                            <a href="/params" class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 light:text-gray-300 hover:bg-gray-100 light:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 light:focus:bg-gray-800 transition duration-150 ease-in-out">
                                 Paramêtre</a>
 
                             <!-- Authentication -->
@@ -100,7 +100,7 @@
                 <div class=" sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button class="inline-flex items-center px-[2px] py-[10px] border border-transparent text-sm leading-4 font-medium rounded-[50%] text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                            <button class="inline-flex items-center px-[2px] py-[10px] border border-transparent text-sm leading-4 font-medium rounded-[50%] text-gray-500 light:text-gray-400 bg-white light:bg-gray-800 hover:text-gray-700 light:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                                 <div>@svg('params', ['width'=>'1em', 'height'=>'1em', 'fill'=>'#505050'])</div>
 
                                 <div class="ms-1">

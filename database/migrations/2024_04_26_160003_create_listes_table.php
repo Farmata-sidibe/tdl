@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('listes', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->notNullable();
-            $table->string('description');
+            $table->string('title')->notNullable();
+            $table->text('description');
             $table->string('dateBirth')->notNullable();
             $table->string('patner')->nullable();
             $table->unsignedBigInteger('user_id');

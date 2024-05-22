@@ -9,7 +9,7 @@
     <div class="w-[100%] h-[.5px] bg-[gray]"></div>
     <div class="flex flex-row flex-wrap justify-between items-center gap-[20px]">
         <a href="/" class="">
-            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 light:text-gray-200" />
         </a>
         <p class="text-[#ffffff]">© 2024 Farmata SIDIBE. Tous droits réservés. </p>
 

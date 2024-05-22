@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Liste;
+use App\Models\User;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ListeRequest;
@@ -55,7 +57,7 @@ class ListeController extends Controller
         // Save the new Cagnotte and set the ID of the Liste's cagnotte_id column
         $liste->cagnotte()->save($cagnotte);
 
-        return Redirect::route('listes.index')
+        return Redirect::route('dashboard')
             ->with('success', 'Liste created successfully.');
     }
 
@@ -70,16 +72,19 @@ class ListeController extends Controller
         return view('liste.show', compact('liste'));
     }
 
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id): View
     {
+        $user = Auth::user()->id;
         $liste = Liste::find($id);
 
-        return view('liste.edit', compact('liste'));
+        return view('liste.edit', compact('liste', 'user'));
     }
 
+    // return view('liste.edit', compact('liste'));
     /**
      * Update the specified resource in storage.
      */
@@ -87,7 +92,7 @@ class ListeController extends Controller
     {
         $liste->update($request->validated());
 
-        return Redirect::route('listes.index')
+        return Redirect::route('dashboard')
             ->with('success', 'Liste updated successfully');
     }
 

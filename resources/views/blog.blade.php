@@ -27,7 +27,7 @@
 
 </head>
 <body>
-    <div class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+    {{-- <div class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
 
             <div>
                 <label for="tw-modal" class="cursor-pointer rounded bg-black px-8 py-4 text-white active:bg-slate-400">
@@ -51,10 +51,10 @@
                 <p class="py-4">consectetur adipisicing elit. Deserunt ipsum delectus rerum provident quasi consequuntur obcaecati harum est possimus iste accusantium officiis debitis illum itaque vel modi animi, tenetur id. </p>
             </label>
             </label>
-    </div>
+    </div> --}}
 
-    <div class="">
-        {{-- number 2 --}}
+    {{-- <div class="">
+
         <div>
             <label for="tw1-modal" class="cursor-pointer rounded bg-black px-8 py-4 text-white active:bg-slate-400">
                 Open modal2
@@ -77,7 +77,9 @@
             <p class="py-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt ipsum delectus rerum provident quasi consequuntur obcaecati harum est possimus iste accusantium officiis debitis illum itaque vel modi animi, tenetur id. </p>
         </label>
         </label>
-    </div>
+    </div> --}}
+
+   {{-- <x-sidebar listeId="{{ route('listes.edit', $liste->id) }}" /> --}}
 
 
 

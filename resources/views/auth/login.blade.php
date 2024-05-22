@@ -29,12 +29,12 @@
         <!-- Remember Me -->
         <div class="flex justify-between mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Se souvenir') }}</span>
+                <input id="remember_me" type="checkbox" class="rounded light:bg-gray-900 border-gray-300 light:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 light:focus:ring-indigo-600 light:focus:ring-offset-gray-800" name="remember">
+                <span class="ms-2 text-sm text-gray-600 light:text-gray-400">{{ __('Se souvenir') }}</span>
             </label>
 
             @if (Route::has('password.request'))
-                <a class="underline-none text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                <a class="underline-none text-sm text-gray-600 light:text-gray-400 hover:text-gray-900 light:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 light:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
                     {{ __('Mot de passe oublié?') }}
                 </a>
             @endif
@@ -44,9 +44,9 @@
 
 
         <div class="flex items-center justify-end mt-4">
-            <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Pas encore membre? ') }}</span>
+            <span class="ms-2 text-sm text-gray-600 light:text-gray-400">{{ __('Pas encore membre? ') }}</span>
             @if (Route::has('register'))
-                <a class="underline text-sm text-[#FF91B2] dark:text-[#9CC4B9] hover:text-[#f8799f] dark:hover:text-[#9CC4B9] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
+                <a class="underline text-sm text-[#FF91B2] light:text-[#9CC4B9] hover:text-[#f8799f] light:hover:text-[#9CC4B9] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 light:focus:ring-offset-gray-800" href="{{ route('register') }}">
                     {{ __('S\'inscrire') }}
                 </a>
             @endif

@@ -12,47 +12,6 @@ use Illuminate\Http\Client\Pool;
 class ScrapeController extends Controller
 {
 
-    // private $client;
-    // private $endpoints = [
-    //     'modes' => 'http://localhost:3000/modes',
-    //     // 'poussettes' => 'http://localhost:3000/poussettes',
-    //     'rooms' => 'http://localhost:3000/rooms',
-    //     'eveils' => 'http://localhost:3000/eveils',
-    //     'others' => 'http://localhost:3000/others',
-    //     'allaitements' => 'http://localhost:3000/allaitements',
-    // ];
-
-    // public function __construct()
-    // {
-    //     $this->client = new Client();
-    // }
-
-    // public function fetchData()
-    // {
-    //     $data = [];
-
-    //     try {
-    //         foreach ($this->endpoints as $key => $endpoint) {
-    //             $response = $this->client->get($endpoint);
-    //             $statusCode = $response->getStatusCode();
-
-    //             if ($statusCode === 200) {
-    //                 $data[$key] = json_decode($response->getBody(), true);
-    //             } else {
-    //                 Log::error("Failed to fetch data from $key. Status code: $statusCode");
-    //                 return view('product', ['message' => "Failed to fetch data from $key. Status code: $statusCode"]);
-    //             }
-    //         }
-
-    //         return view('product', $data);
-    //     } catch (RequestException $e) {
-    //         Log::error('Error fetching data: ' . $e->getMessage());
-    //         $response = $e->getResponse();
-    //         $statusCode = $response ? $response->getStatusCode() : 'unknown';
-    //         return view('product', ['message' => "An error occurred while fetching the data. Status code: $statusCode"]);
-    //     }
-    // }
-
 
 
 public function fetchData()
@@ -64,7 +23,7 @@ public function fetchData()
             $statusCode = $response->getStatusCode();
             $arrayData = json_decode($response->getBody(), true);
 
-            
+
             if ($statusCode === 200 && !empty($arrayData)) {
                 return view(
                     'product',

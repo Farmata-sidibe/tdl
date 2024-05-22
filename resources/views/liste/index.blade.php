@@ -42,7 +42,7 @@
                                         <tr class="even:bg-gray-50">
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
 
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->name }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->title }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->description }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->dateBirth }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->patner }}</td>

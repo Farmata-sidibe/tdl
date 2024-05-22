@@ -1,7 +1,7 @@
 <nav class="flex justify-between items-center w-[92%]  mx-auto bg-white">
     <div>
         <a href="/" class="h-8 w-auto">
-            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 light:text-gray-200" />
         </a>
     </div>
     <div

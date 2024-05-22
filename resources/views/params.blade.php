@@ -39,7 +39,7 @@
         <x-primary-button>Voir ma liste</x-primary-button>
 
         <div class="flex flex-row flex-wrap gap-[20px]">
-            <div class="w-[20vw] mb-[10px] px-[10px] py-[20px] bg-white shadow-sm dark:bg-gray-800 overflow-hidden  sm:rounded-lg">
+            <div class="w-[20vw] mb-[10px] px-[10px] py-[20px] bg-white shadow-sm light:bg-gray-800 overflow-hidden  sm:rounded-lg">
                 <h3 class="text-[25px] font-semibold flex flex-row items-center gap-[10px]">
                     @svg('params', ['width'=>'1.3em', 'height'=>'1.3em', 'fill'=>'#000'])
                     Paramêtre</h3>
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="w-[70vw] bg-white shadow-sm dark:bg-gray-800 overflow-hidden  sm:rounded-lg">
+            <div class="w-[70vw] bg-white shadow-sm light:bg-gray-800 overflow-hidden  sm:rounded-lg">
                 <h2>Paramêtre</h2>
 
             </div>
