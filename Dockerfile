@@ -7,12 +7,23 @@ WORKDIR /app
 # Copier le contenu du répertoire actuel dans le conteneur à /app
 COPY . .
 
-# Exécuter composer pour installer le framework Laravel et les autres dépendances
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer install --no-interaction
+# Installez les dépendances nécessaires
+RUN apt-get update && apt-get install -y \
+    curl \
+    unzip \
+    && apt-get clean
+
+# # Exécuter composer pour installer le framework Laravel et les autres dépendances
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+#     && composer install --no-interaction
+
+# Téléchargez et installez Composer
+RUN curl -o composer-setup.php https://getcomposer.org/installer \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm composer-setup.php
 
 # Installer les extensions nécessaires
-RUN docker-php-ext-install pdo mbstring zip
+# RUN docker-php-ext-install pdo mbstring zip
 
 # Vider le cache
 RUN php artisan cache:clear
