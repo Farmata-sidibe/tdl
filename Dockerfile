@@ -1,10 +1,11 @@
+
 FROM php:8.2-fpm
 
 # Définir le répertoire de travail dans le conteneur à /app
 WORKDIR /app
 
 # Copier le contenu du répertoire actuel dans le conteneur à /app
-COPY . /app
+COPY . .
 
 # Exécuter composer pour installer le framework Laravel et les autres dépendances
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
