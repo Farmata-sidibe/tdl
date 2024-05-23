@@ -67,7 +67,7 @@
 
     </header>
 
-    <section>
+    <section class="mySection">
 
         <div class="section_one">
             <div class="cards_img">

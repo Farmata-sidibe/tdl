@@ -16,6 +16,18 @@ export default {
                 comfortaa: ['Comfortaa', ...defaultTheme.fontFamily.sans],
 
             },
+
+            colors: {
+                'blue': '#1fb6ff',
+                'purple': '#7e5bef',
+                'pink': '#FF91B2',
+                'wheat': '#F6F3EC',
+                'green': '#9CC4B9',
+                'yellow': '#ffc82c',
+                'gray-dark': '#273444',
+                'gray': '#8492a6',
+                'gray-light': '#d3dce6',
+              }
         },
     },
 
