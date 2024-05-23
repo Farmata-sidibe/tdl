@@ -1,3 +1,4 @@
+
 FROM php:8.2-fpm
 
 # Définir le répertoire de travail dans le conteneur à /app
