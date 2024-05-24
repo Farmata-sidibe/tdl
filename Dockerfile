@@ -27,8 +27,8 @@ RUN cp .env.example .env \
     && php artisan key:generate
 
 # Vérifiez et fixez les permissions
-RUN chown -R www-data:www-data /app \
-    && chmod -R 755 /app/storage
+# RUN chown -R www-data:www-data /app \
+#     && chmod -R 755 /app/storage
 
 # Exécutez les commandes Artisan nécessaires
 RUN php artisan cache:clear
