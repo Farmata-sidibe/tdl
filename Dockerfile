@@ -1,24 +1,25 @@
-
 FROM php:8.2-fpm
 
-# Définir le répertoire de travail dans le conteneur à /app
-WORKDIR /app
+ARG user
+ARG uid
 
-# Copier le contenu du répertoire actuel dans le conteneur à /app
-COPY . .
+RUN apt update && apt install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev
 
-# Exécuter composer pour installer le framework Laravel et les autres dépendances
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer install --no-interaction
+RUN apt clean && rm -rf /var/lib/apt/lists/*
 
-# Installer les extensions nécessaires
-RUN docker-php-ext-install pdo mbstring zip
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Vider le cache
-RUN php artisan cache:clear
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Expose le port 8000 pour PHP-FPM
-EXPOSE 8000
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
 
-# Exécute PHP-FPM
-CMD ["php-fpm"]
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
+    
+WORKDIR /var/www
+USER $user
