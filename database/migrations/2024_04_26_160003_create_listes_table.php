@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('listes', function (Blueprint $table) {
             $table->id();
             $table->string('title')->notNullable();
+            $table->uuid('uuid')->unique();
+            // $table->string('slug')->unique();
             $table->text('description');
             $table->string('dateBirth')->notNullable();
-            $table->string('patner')->nullable();
+            $table->string('partner')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();

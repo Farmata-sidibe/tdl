@@ -9,14 +9,8 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'marque',
-        'price',
-        'size',
-        'image',
-        'link',
-    ];
 
-    
+    protected $fillable = ['title', 'brand', 'price', 'size', 'img', 'link', 'reserved'];
+
+
 }

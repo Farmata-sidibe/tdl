@@ -32,7 +32,7 @@ class ListeRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'dateBirth' => 'required|string|max:255',
-            'patner' => 'nullable|string|max:255',
+            'partner' => 'nullable|string|max:255',
             // 'cagnotte_id' => 'nullable|exists:cagnottes,id',
             // 'user_id' => 'required|exists:users,id', Rule::unique('listes')->ignore($this->liste),
         ];

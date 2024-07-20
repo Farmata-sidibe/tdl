@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->NotNullable();
-            $table->string('marque');
+            $table->string('title')->NotNullable();
+            $table->string('brand');
             $table->integer('price');
-            $table->integer('size');
-            $table->text('image');
+            $table->string('size');
+            $table->string('img')->nullable();
             $table->text('link')->NotNullable();
+            $table->boolean('reserved')->default(false);
             $table->timestamps();
         });
     }

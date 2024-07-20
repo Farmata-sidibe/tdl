@@ -1,9 +1,4 @@
 <x-app-layout>
-    {{-- <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 light:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot> --}}
 
     <div class="py-12">
         <div class="max-w-[85rem] mx-auto sm:px-6 lg:px-8 flex flex-row flex-wrap justify-between">
@@ -34,20 +29,11 @@
 
                 <div class="">
                     <div class="flex flex-row gap-[60px]">
-                        <h4 class="btns envies active">Mes envies</h4>
-                        <h4 class="btns participants">Les participants</h4>
-                        <h4 class="btns indispensables">Mes indispensables</h4>
+                        <h4 class="btns envies active">Nos envies</h4>
+
                     </div>
 
                     <div class="envies flex flex-row justify-center gap-[40px] flex-wrap">
-
-                    </div>
-
-                    <div class="participants flex flex-row justify-center gap-[40px] flex-wrap">
-
-                    </div>
-
-                    <div class="indispensables flex flex-row justify-center gap-[40px] flex-wrap">
 
                     </div>
 
@@ -74,35 +60,32 @@
                         </div>
 
                         <div class="text-center pt-[10px]">
-                            <x-primary-button>Partager</x-primary-button>
+                            <x-primary-button>Contribuer</x-primary-button>
                         </div>
 
                     </div>
 
                     <div class=" flex flex-col gap-[10px] bg-white shadow-sm ring-1 ring-[#f5f5f5] h-auto sm:rounded-lg px-[10px] py-[20px]">
-                        <h2 class="text-center text-[20px] text-[#9CC4B9] font-bold">Gestion de ma liste</h2>
+                        <h2 class="text-center text-[20px] text-[#9CC4B9] font-bold">Contibution libre</h2>
+                        <p class="text-[#505050] text-[16px] font-medium">Vous pouvez contribuez à la cagnotte avec le montant de votre choix</p>
 
-                        <a href="#" class="flex flex-row items-center gap-[10px] text-[#505050] text-[16px]">
-                            @svg('addLink', ['width'=>25, 'height'=>25, 'fill'=>'#505050'])
-                            Ajouter un produit via un lien
-                        </a>
-
-                        <a href="#" class="flex flex-row items-center gap-[10px] text-[#505050] text-[16px]">
-                            @svg('fav', ['width'=>25, 'height'=>25, 'fill'=>'#505050'])
-                            Voir les essentiels bébé
-                        </a>
-
-                        <a href="#" class="flex flex-row items-center gap-[10px] text-[#505050] text-[16px]">
-                            @svg('deposit', ['width'=>25, 'height'=>25, 'fill'=>'#505050'])
-                            Ma Cagnotte
-                        </a>
-
+                        <div class="flex flex-row justify-between">
+                            {{-- <input type="number" class="w-[100px] rounded-[7px] bg-beige border-1 border-[#DCD9D2] ring-inset " name="amount_contribute" id="amount_contribute" placeholder="50€"> --}}
+                            <div class="relative">
+                                <input autocomplete="off" inputmode="numeric" placeholder="40" class="h-10 input block pr-7 w-[100px] rounded-[7px] bg-beige border-1 border-[#DCD9D2]">
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <span class="text-gray-500 sm:text-sm">€</span>
+                                </div>
+                            </div>
+                            <x-primary-button>Contribuer</x-primary-button>
+                        </div>
                     </div>
 
                     <div class=" flex flex-col gap-[10px] bg-white shadow-sm ring-1 ring-[#f5f5f5] h-auto sm:rounded-lg px-[10px] py-[20px]">
                         <p class="text-[#505050] text-[16px] font-medium ">
-                            Nous avons choisi une liste de produit qui nous feront plaisir pour l’arrivée de notre princesse
-                        </p>
+                            <span class="text-vertPoudre">Laura et Nico</span>
+
+                            ont choisi une liste de produit qui leur fera plaisir vous pouvez contribuer sur les produits de votre choix                        </p>
 
                     </div>
                 </div>

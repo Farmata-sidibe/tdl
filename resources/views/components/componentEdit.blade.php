@@ -16,8 +16,8 @@
 
                     <a href="{{route('profile.edit')}}" class="hover:text-[#FF91B2] focus:text-[#FF91B2] active:text-[#FF91B2]"  id="profile">Mon profil</a>
                     <a href="{{$routeListeEdit}}" class="hover:text-[#FF91B2] focus:text-[#FF91B2] active:text-[#FF91B2] " id="description">Ma liste</a>
-                    <a href="#" class="hover:text-[#FF91B2] focus:text-[#FF91B2] active:text-[#FF91B2]" id="cagnotte">Ma cagnotte</a>
-                    <a href="#" class="hover:text-[#FF91B2] focus:text-[#FF91B2] active:text-[#FF91B2]" id="bancaire">Information bancaire</a>
+                    {{-- <a href="#" class="hover:text-[#FF91B2] focus:text-[#FF91B2] active:text-[#FF91B2]" id="cagnotte">Ma cagnotte</a> --}}
+                    <a href="{{route('cagnotte.active-cagnotte')}}" class="hover:text-[#FF91B2] focus:text-[#FF91B2] active:text-[#FF91B2]" id="bancaire">Information bancaire</a>
                     <a href="#" class="hover:text-[#FF91B2] focus:text-[#FF91B2] active:text-[#FF91B2]" id="historique">Historique</a>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                             <div class="">
                                 <h3 class=" text-[18px] mb-[10px]">Nom de votre partenaire</h3>
 
-                                <x-input placeholder="Ex: Paul" :value="old('patner', $liste?->patner)"></x-input>
+                                <x-input placeholder="Ex: Paul" :value="old('partner', $liste?->partner)"></x-input>
                             </div>
 
                             <div class="">

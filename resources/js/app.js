@@ -50,12 +50,29 @@ let btnHistorique = document.getElementById("historique");
 
 
 
+
+
+
 let blocDescription = document.querySelector(".description");
 let blocProfile = document.querySelector(".profile");
 let blocBancaire = document.querySelector(".bancaire");
 let blocCagnotte = document.querySelector(".cagnotte");
 let blocHistorique = document.querySelector(".historique");
 
+
+
+
+
+
+
+
+btnProfile.onclick = function () {
+    console.log('click')
+    blocProfile.style.display = "flex";
+    blocDescription.style.display = "none";
+    blocBancaire.style.display = "none";
+
+};
 
 
 
@@ -101,7 +118,6 @@ btnHistorique.onclick = function () {
 
 
 };
-
 
 
 // Fonction pour afficher/cacher un bloc

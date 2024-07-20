@@ -47,7 +47,7 @@
 
     <header class="container_header">
         <div class="header_text">
-            <h1 class="text-black">Créez et partagez <br> votre <span class="text-[#FF91B2]">liste de <br> naissance</span> </h1>
+            <h1 class="text-black">Créez et partagez <br> votre <span class="text-rose">liste de <br> naissance</span> </h1>
             <p class="text-black">Des envies comblées pour une naissance inoubliable</p>
             <div class="group_btn">
                 {{-- <button class="bg-[#FF91B2] text-white px-7 py-2 rounded-[15px] hover:bg-[#9CC4B9]">Créer ma liste de

@@ -17,12 +17,20 @@
         <x-input-error class="mt-2" :messages="$errors->get('dateBirth')" />
     </div>
     <div>
-        <x-text-input id="patner" name="patner" type="text" class="mt-1 block w-full" :value="old('patner', $liste?->patner)"
-            autocomplete="patner" placeHolder="Patner" />
-        <x-input-error class="mt-2" :messages="$errors->get('patner')" />
+        <x-text-input id="partner" name="partner" type="text" class="mt-1 block w-full" :value="old('partner', $liste?->partner)"
+            autocomplete="partner" placeHolder="partner" />
+        <x-input-error class="mt-2" :messages="$errors->get('partner')" />
     </div>
 
     <div class="flex items-center gap-4">
         <x-primary-button>Submit</x-primary-button>
+        {{-- @csrf
+        @method('DELETE')
+        <a href="{{ route('listes.destroy', $liste->id) }}"
+            class="inline-flex items-center px-4 py-2 bg-black border border-transparent rounded-md font-semibold text-xs text-white tracking-widest hover:bg-gray-700  focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+            onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Supprimer ma liste') }}
+        </a> --}}
     </div>
+
+
 </div>

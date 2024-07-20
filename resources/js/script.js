@@ -4,6 +4,8 @@ import Alpine from "alpinejs";
 window.Alpine = Alpine;
 Alpine.start();
 
+
+
 // affichage des produits
 let btnPoussette = document.getElementById("poussette");
 let btnChambre = document.getElementById("chambre");
@@ -80,3 +82,5 @@ btnAutre.onclick = function () {
     blocAutre.style.display = "flex";
     blocEveil.style.display = "none";
 };
+
+

@@ -1,96 +1,31 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.frontend')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
+    <div class="container px-6 mx-auto">
+        <h3 class="text-2xl font-medium text-gray-700">Product List</h3>
+        <div class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            @foreach ($products as $product)
+            <div class="w-full max-w-sm mx-auto overflow-hidden rounded-md shadow-md">
+                <img src="{{ url($product->image) }}" alt="" class="w-full max-h-60">
+                <div class="flex items-end justify-end w-full bg-cover">
 
-    <title>TDL</title>
-    <link rel="icon" type="image/svg" sizes="32x32" href="{{ asset('icon-tdl.svg') }}">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-
-
-    <!-- Styles -->
-
-    <!-- Script -->
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-
-    @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/scss/product.scss'])
-</head>
-
-<body>
-
-    <x-navbar />
-    <x-nav-user />
-
-    <div class="containeDtProduct flex flex-col p-[60px] gap-[30px]">
-        <h2 class="title">Dors-bien jersey de coton cerises (lot de 3) rose naissance</h2>
-
-        <div class="btnGroup flex flex-row flex-wrap gap-[20px]">
-            <button class="ring-1 ring-[#FF91B2] text-[#FF91B2] px-[10px] py-[5px] rounded-[5px]">General info</button>
-            <button class=" text-[#9A9CA5] px-[10px] py-[5px] rounded-[5px]">Description</button>
-            <button class=" text-[#9A9CA5] px-[10px] py-[5px] rounded-[5px]">Composition</button>
-
-        </div>
-        <hr>
-
-        <div class="productInfo flex flex-row flex-wrap justify-between">
-            <div class="img flex flex-col gap-[20px]">
-                <img src="{{ asset('img/0426123_800.jpg') }}" class="rounded-[10px] w-[400px] h-[500px] object-cover"
-                    alt="image product">
-                <div class="minImg flex flex-row gap-[20px]">
-                    <img src="{{ asset('img/0426123_800.jpg') }}"
-                        class="rounded-[7px] w-[90px] h-[90px] ring-1 ring-[#FF91B2] object-cover" alt="">
+                </div>
+                <div class="px-5 py-3">
+                    <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>
+                    <span class="mt-2 text-gray-500">${{ $product->price }}</span>
+                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" value="{{ $product->id }}" name="id">
+                        <input type="hidden" value="{{ $product->name }}" name="name">
+                        <input type="hidden" value="{{ $product->price }}" name="price">
+                        <input type="hidden" value="{{ $product->image }}"  name="image">
+                        <input type="hidden" value="1" name="quantity">
+                        <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To Cart</button>
+                    </form>
                 </div>
 
             </div>
-
-            <div class="infoText flex flex-col gap-[40px]">
-                <h3 class="text-[#FF4242] text-[25px] font-[700]">19€40</h3>
-                <div class="otherProduct flex flex-col gap-[10px]">
-                    <p>Couleur: Rose</p>
-                    <div class="minImg flex flex-row flex-wrap gap-[20px]">
-                        <img src="{{ asset('img/0426123_800.jpg') }}"
-                            class="rounded-[7px] w-[90px] h-[90px] ring-1 ring-[#FF91B2] object-cover" alt="">
-                        <img src="{{ asset('img/0426125_800.jpg') }}"
-                            class="rounded-[7px] w-[90px] h-[90px] object-cover" alt="">
-                        <img src="{{ asset('img/0426124_800.jpg') }}"
-                            class="rounded-[7px] w-[90px] h-[90px] object-cover " alt="">
-                    </div>
-                </div>
-
-                <div class="size flex flex-col gap-[10px]">
-                    <p>Size</p>
-                    <select name="" id=""
-                        class="rounded-[4px] h-[40px] ring-1 ring-[#D7DADD] text-[#9A9CA5]">
-                        <option value="">taille naissance</option>
-                    </select>
-                </div>
-
-                <div class="btnFinish flex flex-row flex-wrap gap-[20px]">
-                    <button class="bg-[#FF91B2] text-[#FFF] px-[20px] py-[10px] rounded-[20px]">Ajouter à ma
-                        liste</button>
-                    <button
-                        class="flex flex-row gap-[10px] bg-[#F6F3EC] text-[#FF91B2] px-[20px] py-[10px] rounded-[20px]">
-                        @svg('shop', ['width' => '20px', 'height' => '20px', 'stroke' => '#FF91B2']) Acheter directement</button>
-                    <button
-                        class="flex flex-row gap-[10px] ring-1 ring-[#FF91B2] text-[#FF91B2] px-[20px] py-[10px] rounded-[20px]">@svg('fav', ['width' => '20px', 'height' => '20px', 'stroke' => '#FF91B2'])
-                        Favori</button>
-                </div>
-
-            </div>
+            @endforeach
         </div>
     </div>
-
-
-
-</body>
-
-</html>
+@endsection

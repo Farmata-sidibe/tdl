@@ -76,7 +76,7 @@
                             <div class="">
                                 <h3 class=" text-[18px] mb-[10px]">Nom de votre partenaire</h3>
 
-                                <x-input placeholder="Ex: Paul" :value="old('patner', $liste?->patner)"></x-input>
+                                <x-input placeholder="Ex: Paul" :value="old('partner', $liste?->partner)"></x-input>
                             </div>
 
                             <div class="">

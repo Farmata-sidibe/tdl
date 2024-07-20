@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ListeRequest;
 use App\Models\Cagnotte;
+use App\Models\Participant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -24,6 +25,15 @@ class ListeController extends Controller
 
         return view('liste.index', compact('listes'))
             ->with('i', ($request->input('page', 1) - 1) * $listes->perPage());
+    }
+    public function indexListe(Request $request)
+    {
+        $request->merge(['user_id' => Auth::id()]);
+        $user = Auth::user();
+        // $liste = Liste::find($request->all());
+        $liste = $request->user()->listes()->first();
+        // dd($liste);
+        return view('layouts.navigation', compact('liste', 'user'));
     }
 
     /**
@@ -59,6 +69,54 @@ class ListeController extends Controller
 
         return Redirect::route('dashboard')
             ->with('success', 'Liste created successfully.');
+    }
+
+    public function showBySlug($uuid)
+    {
+        // Rechercher la liste par l'UUID
+        // $liste = Liste::where('uuid', $uuid)->firstOrFail();
+        $liste = Liste::where('uuid', $uuid)->with('user')->firstOrFail();
+        $cagnotte = $liste->cagnotte()->first();
+        $user = $liste->user()->first();
+
+        if (!$liste) {
+            return redirect()->route('home')->with('error', 'Liste non trouvée');
+        }
+        $total = 0;
+
+        if ($liste && $liste->products->count() > 0) {
+            foreach ($liste->products as $product) {
+                $total += floatval(str_replace(',', '.', str_replace('€', '', $product['price'])));
+            }
+        }
+
+        // Calculer la somme totale des contributions et l'objectif de collecte
+        $current_amount = $cagnotte->current_amount;
+        $total_amount = $total; // Remplacez par l'objectif réel de votre collecte
+        $percentage = $total_amount > 0 ? ($current_amount / $total_amount) * 100 : 0;
+        // return view('liste.showBySlug', compact('liste', 'current_amount', 'total_amount'));
+        return view('liste.showBySlug', ['liste' => $liste, 'current_amount'=> $current_amount, 'total_amount' => $total_amount, 'user' => $user, 'percentage'=>$percentage]);
+
+    }
+
+    // Méthode pour participer à la cagnotte
+    public function participate(Request $request, $uuid)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'amount' => 'required|numeric|min:1',
+        ]);
+
+        Participant::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'amount' => $request->amount,
+        ]);
+
+        $liste = Liste::where('uuid', $uuid)->firstOrFail();
+
+        return redirect()->route('liste.showBySlug', $liste->uuid)->with('success', 'Contribution ajoutée avec succès!');
     }
 
 

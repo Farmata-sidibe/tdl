@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Str;
 
 
 class Liste extends Model
@@ -15,12 +15,22 @@ class Liste extends Model
 
     protected $fillable = [
         'title',
+        'uuid',
+        // 'slug',
         'description',
         'dateBirth',
-        'patner',
+        'partner',
         'cagnotte_id',
         'user_id',
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     /**
      * The attributes that should be cast.
@@ -41,6 +51,11 @@ class Liste extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'liste_product')
+                    ->withPivot('title', 'brand', 'price', 'size', 'img', 'link','reserved');
+    }
 
     public function cagnotte(): HasOne
     {

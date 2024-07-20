@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
 
     <!-- Styles -->
 
@@ -25,14 +26,14 @@
 </head>
 
 <body>
-    <x-navbar />
+
+
     <div class="header">
-        <!-- if the is not login we don't show the user nav -->
-        @if (Auth::check())
-            <x-nav-user />
-        @endif
-
-
+        @auth
+        @include('layouts.navigation')
+        @else
+        <x-navbar />
+        @endauth
 
         <div class="header_product bg-[#F6F3EC] px-[60px] py-[20px] w-[100%] flex flex-row justify-center items-center">
 
@@ -101,13 +102,20 @@
                     @foreach ($modes as $mode)
                         @if (isset($mode['img']))
                             <x-card-product
-                                titleProduct="{{ $mode['title'] ?? ''}}"
+                                {{-- titleProduct="{{ $mode['title'] ?? ''}}" --}}
                                 image="{{ $mode['img'] ?? '' }}"
                                 marque="{{ $mode['brand'] ?? '' }}"
                                 price="{{ $mode['price'] ?? '' }}"
                                 title="{{ $mode['title'] ?? '' }}"
                                 url="{{$mode['link'] ?? '' }}"
-                                titleProduct="{{ substr($mode['title'] ?? '', 0, 20) }}{{ strlen($mode['title'] ?? '') > 20 ? '...' : '' }}">
+                                titleProduct="{{ substr($mode['title'] ?? '', 0, 20) }}{{ strlen($mode['title'] ?? '') > 20 ? '...' : '' }}"
+                                >
+                                @if(isset($mode['size']))
+                                    @foreach($mode['size'] as $size)
+                                        <input type="hidden" name="size[]" value="{{ $size }}">
+                                    @endforeach
+                                @endif
+
                             </x-card-product>
                         @endif
                     @endforeach
@@ -226,6 +234,8 @@
         </div>
     </section>
     <x-footer />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
 </body>
 
 </html>

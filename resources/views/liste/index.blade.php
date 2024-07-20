@@ -30,7 +30,7 @@
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Name</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Description</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Datebirth</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Patner</th>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">partner</th>
 									{{-- <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">User Id</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Cagnotte Id</th> --}}
 
@@ -45,7 +45,7 @@
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->title }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->description }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->dateBirth }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->patner }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->partner }}</td>
 										{{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->user_id }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->cagnotte_id }}</td> --}}
 

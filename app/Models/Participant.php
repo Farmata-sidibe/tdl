@@ -13,6 +13,7 @@ class Participant extends Model
         'email',
         'amount',
         'date_contribution',
+        'product_id',
         'cagnotte_id',
     ];
 
@@ -29,5 +30,9 @@ class Participant extends Model
     public function cagnotte()
     {
         return $this->belongsTo(Cagnotte::class);
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }
