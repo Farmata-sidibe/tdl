@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f67f9c937d4a67d20a1c1430db81da5",
+    "content-hash": "e4e9e4323257f6e2a2095c03b36dc968",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -3899,16 +3899,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v15.2.0",
+            "version": "v15.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "29a28251d35dba236ad6e860e1927b3f35cc1b2e"
+                "reference": "4209ec90509656623c8976e70b31c80070e355da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/29a28251d35dba236ad6e860e1927b3f35cc1b2e",
-                "reference": "29a28251d35dba236ad6e860e1927b3f35cc1b2e",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/4209ec90509656623c8976e70b31c80070e355da",
+                "reference": "4209ec90509656623c8976e70b31c80070e355da",
                 "shasum": ""
             },
             "require": {
@@ -3952,9 +3952,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v15.2.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v15.6.0"
             },
-            "time": "2024-07-11T18:46:58+00:00"
+            "time": "2024-08-08T23:56:48+00:00"
         },
         {
             "name": "symfony/browser-kit",

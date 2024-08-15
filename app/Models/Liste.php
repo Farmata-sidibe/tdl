@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
-
 class Liste extends Model
 {
     use HasFactory;
@@ -16,7 +15,8 @@ class Liste extends Model
     protected $fillable = [
         'title',
         'uuid',
-        // 'slug',
+        'stripe_account_id',
+        'identity_verified',
         'description',
         'dateBirth',
         'partner',

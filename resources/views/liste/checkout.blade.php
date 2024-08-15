@@ -1,4 +1,52 @@
+<!-- resources/views/liste/show.blade.php -->
+{{-- <x-app-layout>
+    <div class="container">
+        <h1>Wish List de {{ $liste->title }}</h1>
+        <h2>{{$liste->user->name}} </h2>
+
+        <div class="progress mb-4">
+            <div class="progress-bar" role="progressbar" style="width: {{ ($current_amount / $total_amount) * 100 }}%;"
+                aria-valuenow="{{ ($current_amount / $total_amount) * 100 }}" aria-valuemin="0" aria-valuemax="100">
+                {{ number_format(($current_amount / $total_amount) * 100, 2) }}%
+            </div>
+        </div>
+
+        <p>Montant collecté: {{ number_format($current_amount, 2, ',', ' ') }} € / Objectif:
+            {{ number_format($total_amount, 2, ',', ' ') }} €</p>
+
+        <h2>Liste des Produits</h2>
+        @if ($liste && $liste->products->count() > 0)
+
+            @foreach ($liste->products as $product)
+                <x-card-wish
+                    id="{{ $product->pivot->id }}"
+                    image="{{ $product->pivot->img }}"
+                    marque="{{ $product->pivot->brand }}"
+                    price="{{ $product->pivot->price }}"
+                    title="{{ $product->pivot->title }}"
+                    titleProduct="{{ substr($product->pivot->title ?? '', 0, 20) }}{{ strlen($product->pivot->title ?? '') > 20 ? '...' : '' }}"
+                />
+            @endforeach
+        @else
+            <p>Aucun produit dans la liste de naissance.</p>
+        @endif
+
+        <h3>Participer à la Cagnotte</h3>
+        <form action="{{ route('liste.participate', $liste->uuid) }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="amount">Montant à contribuer (€):</label>
+                <input type="number" id="amount" name="amount" class="form-control" required min="1">
+            </div>
+            <button type="submit" class="btn btn-primary">Participer</button>
+        </form>
+    </div>
+</x-app-layout> --}}
+
+
+
 <x-app-layout>
+
     <div class="py-12">
 
         <div class="max-w-[85rem] mx-auto sm:px-6 lg:px-8 flex flex-col-reverse items-center lg:justify-between lg:flex-wrap lg:flex-row lg:items-start">
@@ -37,13 +85,12 @@
 
                             @foreach($liste->products as $product)
 
-                                <x-card-contribution
-                                    id="{{ $product->id }}"
+                                <x-card-wish
+                                    id="{{ $product->pivot->id }}"
                                     image="{{ $product->pivot->img }}"
                                     marque="{{ $product->pivot->brand }}"
                                     price="{{ $product->pivot->price }}"
                                     title="{{ $product->pivot->title }}"
-                                    liste_id="{{ $liste->id }}"
                                     titleProduct="{{ substr($product->pivot->title ?? '', 0, 20) }}{{ strlen($product->pivot->title ?? '') > 20 ? '...' : '' }}"
                                 />
                             @endforeach
@@ -55,6 +102,10 @@
                     </div>
 
                     <div class="participants flex flex-row justify-center gap-[40px] flex-wrap">
+
+                    </div>
+
+                    <div class="indispensables flex flex-row justify-center gap-[40px] flex-wrap">
 
                     </div>
 
@@ -100,18 +151,31 @@
                         Vous pouvez contribuez à la cagnotte avec le montant de votre choix
                        </p>
 
-                        {{-- <form action="{{ route('liste.showBySlug.post') }}" method="POST">
+                        {{-- <form action="{{ route('liste.participate', $liste->uuid) }}" method="POST" class="flex flex-col gap-[10px]">
                             @csrf
-                            <x-primary-button type="submit" id="checkout-button">Contribuer</x-primary-button>
+                            <div class="flex flex-col justify-between gap-[10px]">
+                                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" autocomplete="name" placeHolder="Nom" required/>
+
+                                <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" autocomplete="email" placeHolder="Email" required/>
+
+                                <x-text-input id="amount" name="amount" type="number" class="mt-1 block w-full" autocomplete="amount" placeHolder="Montant" required/>
+                            </div>
+
+                            <div class="flex flex-col items-center">
+                                <x-primary-button>Contribuer</x-primary-button>
+
+                            </div>
                         </form> --}}
-                        <form action="{{ route('liste.showBySlug.post', $liste->id) }}" method="POST">
+
+                        <form action="{{ route('liste.ckeckout.post') }}" method="POST">
                             @csrf
-                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" placeHolder="Nom complet" required />
-                            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" placeHolder="Email" required />
-                            <x-text-input id="amount" name="amount" type="number" class="mt-1 block w-full" placeHolder="Montant" required />
-                            <br>
+                            {{-- <button type="submit" id="checkout-button">Pay</button> --}}
                             <x-primary-button type="submit" id="checkout-button">Contribuer</x-primary-button>
                         </form>
+
+
+
+
 
                     </div>
 
@@ -119,6 +183,7 @@
                         <p class="text-[#505050] text-[16px] font-medium ">
                             Nous avons choisi une liste de produit qui nous feront plaisir pour l’arrivée de notre princesse
                         </p>
+                        {{-- <p>Montant collecté: {{ number_format($current_amount, 2, ',', ' ') }} € / Objectif: {{ number_format($total_amount, 2, ',', ' ') }} €</p> --}}
 
 
                     </div>

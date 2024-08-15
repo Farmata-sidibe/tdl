@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Liste;
 use App\Models\User;
-
+use App\Services\PaymentService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ListeRequest;
 use App\Models\Cagnotte;
 use App\Models\Participant;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -26,6 +27,7 @@ class ListeController extends Controller
         return view('liste.index', compact('listes'))
             ->with('i', ($request->input('page', 1) - 1) * $listes->perPage());
     }
+
     public function indexListe(Request $request)
     {
         $request->merge(['user_id' => Auth::id()]);
@@ -64,6 +66,12 @@ class ListeController extends Controller
             'current_amount' => 0,
         ]);
 
+        // Créez un compte connecté Stripe pour la liste
+        $paymentService = new PaymentService();
+        $stripeAccountId = $paymentService->createStripeAccount(auth()->user());
+
+        $liste->update(['stripe_account_id' => $stripeAccountId]);
+
         // Save the new Cagnotte and set the ID of the Liste's cagnotte_id column
         $liste->cagnotte()->save($cagnotte);
 
@@ -71,32 +79,39 @@ class ListeController extends Controller
             ->with('success', 'Liste created successfully.');
     }
 
+    // Rechercher la liste par l'UUID
+    // $liste = Liste::where('uuid', $uuid)->firstOrFail();
+    // $liste = Liste::where('uuid', $uuid)->with('user')->firstOrFail();
+    // $cagnotte = $liste->cagnotte()->first();
+    // $user = $liste->user()->first();
+
+    // if (!$liste) {
+    //     return redirect()->route('home')->with('error', 'Liste non trouvée');
+    // }
+    // $total = 0;
+
+    // if ($liste && $liste->products->count() > 0) {
+    //     foreach ($liste->products as $product) {
+    //         $total += floatval(str_replace(',', '.', str_replace('€', '', $product['price'])));
+    //     }
+    // }
+
+    // // Calculer la somme totale des contributions et l'objectif de collecte
+    // $current_amount = $cagnotte->current_amount;
+    // $total_amount = $total; // Remplacez par l'objectif réel de votre collecte
+    // $percentage = $total_amount > 0 ? ($current_amount / $total_amount) * 100 : 0;
+    // // return view('liste.showBySlug', compact('liste', 'current_amount', 'total_amount'));
+    // return view('liste.showBySlug', ['liste' => $liste, 'current_amount' => $current_amount, 'total_amount' => $total_amount, 'user' => $user, 'percentage' => $percentage]);
+
     public function showBySlug($uuid)
     {
-        // Rechercher la liste par l'UUID
-        // $liste = Liste::where('uuid', $uuid)->firstOrFail();
-        $liste = Liste::where('uuid', $uuid)->with('user')->firstOrFail();
-        $cagnotte = $liste->cagnotte()->first();
+        $liste = Liste::where('uuid', $uuid)->with('user', 'cagnotte', 'products')->firstOrFail();
         $user = $liste->user()->first();
+        $total = $liste->total_amount;
+        $current_amount = $liste->cagnotte->current_amount;
+        $percentage = $total > 0 ? ($current_amount / $total) * 100 : 0;
 
-        if (!$liste) {
-            return redirect()->route('home')->with('error', 'Liste non trouvée');
-        }
-        $total = 0;
-
-        if ($liste && $liste->products->count() > 0) {
-            foreach ($liste->products as $product) {
-                $total += floatval(str_replace(',', '.', str_replace('€', '', $product['price'])));
-            }
-        }
-
-        // Calculer la somme totale des contributions et l'objectif de collecte
-        $current_amount = $cagnotte->current_amount;
-        $total_amount = $total; // Remplacez par l'objectif réel de votre collecte
-        $percentage = $total_amount > 0 ? ($current_amount / $total_amount) * 100 : 0;
-        // return view('liste.showBySlug', compact('liste', 'current_amount', 'total_amount'));
-        return view('liste.showBySlug', ['liste' => $liste, 'current_amount'=> $current_amount, 'total_amount' => $total_amount, 'user' => $user, 'percentage'=>$percentage]);
-
+        return view('liste.showBySlug', compact('liste', 'current_amount', 'total', 'user', 'percentage'));
     }
 
     // Méthode pour participer à la cagnotte
@@ -112,13 +127,15 @@ class ListeController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'amount' => $request->amount,
+            'date_contribution' => Carbon::now(),
         ]);
 
         $liste = Liste::where('uuid', $uuid)->firstOrFail();
+        $cagnotte = $liste->cagnotte();
+        $cagnotte->update(['current_amount' => $cagnotte->current_amount + $request->amount]);
 
         return redirect()->route('liste.showBySlug', $liste->uuid)->with('success', 'Contribution ajoutée avec succès!');
     }
-
 
     /**
      * Display the specified resource.
@@ -161,4 +178,32 @@ class ListeController extends Controller
         return Redirect::route('listes.index')
             ->with('success', 'Liste deleted successfully');
     }
+
+
+    // public function contribute(Request $request, $listeId)
+    // {
+    //     $request->validate([
+    //         'amount' => 'required|numeric|min:1',
+    //         'payment_method_id' => 'required|string',
+    //     ]);
+
+    //     $liste = Liste::findOrFail($listeId);
+    //     $paymentService = new PaymentService();
+    //     $result = $paymentService->contributeToList($liste, $request->amount, $request->payment_method_id);
+
+    //     if (isset($result['status']) && $result['status'] === 'error') {
+    //         return back()->withErrors(['payment' => $result['message']]);
+    //     }
+
+    //     Participant::create([
+    //         'name' => Auth::user()->name,
+    //         'email' => Auth::user()->email,
+    //         'amount' => $request->amount,
+    //         'cagnotte_id' => $liste->cagnotte->id,
+    //     ]);
+
+    //     $liste->cagnotte()->increment('current_amount', $request->amount);
+
+    //     return back()->with('success', 'Contribution effectuée avec succes');
+    // }
 }

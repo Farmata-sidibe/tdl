@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title')->notNullable();
             $table->uuid('uuid')->unique();
-            // $table->string('slug')->unique();
+            $table->string('stripe_account_id')->nullable();
+            $table->boolean('identity_verified')->default(false); 
             $table->text('description');
             $table->string('dateBirth')->notNullable();
             $table->string('partner')->nullable();

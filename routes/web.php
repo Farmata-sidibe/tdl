@@ -9,6 +9,8 @@ use App\Http\Controllers\WishListController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\StripeWebhookController;
+use App\Http\Controllers\ContributionController;
+use App\Http\Controllers\TransferController;
 
 
 
@@ -46,24 +48,32 @@ Route::post('/liste/{uuid}/participate', [ListeController::class, 'participate']
 //     return view('participer');
 // });
 
+// Stripe checkout routes
+Route::group(['prefix' => 'checkout'], function () {
+    Route::get('/', [StripeController::class, 'checkout'])->name('liste.showBySlug');
+    // Route::get('/{liste}', [StripeController::class, 'checkout'])->name('checkout');
+    Route::get('/{uuid}', [ListeController::class, 'showBySlug'])->name('liste.showBySlug');
+    Route::post('/{liste}', [StripeController::class, 'checkoutPost'])->name('liste.showBySlug.post');
+    // Route::get('success', [StripeController::class, 'success'])->name('success');
+    // Route::get('cancel', [StripeController::class, 'cancel'])->name('cancel');
+});
+
+// Route pour les webhooks Stripe
+Route::post('stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
+
+
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
+// Route::post('liste/{id}/contribute', [ListeController::class, 'contribute'])->name('liste.contribute');
+Route::post('list/{id}/transfer', [TransferController::class, 'requestTransfer'])->name('list.transfer.request');
 // Route pour afficher la page de paiement
-Route::get('checkout', [StripeController::class, 'checkout'])->name('liste.showBySlug');
-Route::get('/liste/{uuid}', [ListeController::class, 'showBySlug'])->name('liste.showBySlug');
 
-// Route pour traiter le paiement
-Route::post('checkout', [StripeController::class, 'checkoutPost'])->name('liste.showBySlug.post');
 
 // Route pour la page de succès de paiement
 Route::get('payment/success', [StripeController::class, 'success'])->name('success');
 
 // Route pour la page d'annulation de paiement
 Route::get('payment/cancel', [StripeController::class, 'cancel'])->name('cancel');
-
-// Route pour les webhooks Stripe
-Route::post('stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
-
 
 
 Route::group(['prefix' => 'product'], function () {
@@ -87,7 +97,6 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/dashboard', [DashboardController::class, 'indexListe'])->name('dashboard');
     Route::post('/product/add/{title}', [DashboardController::class, 'addProductWish'])->name('dashboard.addProductWish');
     Route::delete('/product/delete/', [DashboardController::class, 'deleteProductWish'])->name('dashboard.deleteProductWish');
-
 });
 
 

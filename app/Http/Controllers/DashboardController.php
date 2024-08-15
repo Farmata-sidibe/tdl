@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Liste;
 use App\Models\Product;
+use Stripe\Stripe;
+use Stripe\Account;
 use Illuminate\Support\Facades\Http;
 
 class DashboardController extends Controller
@@ -27,9 +29,9 @@ class DashboardController extends Controller
             }
         }
 
-        $total_amount = $cagnotte->total_amount;
+        $total_amount = $cagnotte->total_amount ?? 0;
         $total_amount = $total;
-        $current_amount = $cagnotte->current_amount;
+        $current_amount = $cagnotte->current_amount ?? 0;
         $percentage = $total_amount > 0 ? ($current_amount / $total_amount) * 100 : 0;
 
         return view('dashboard', compact('user', 'liste', 'total', 'total_amount', 'current_amount','percentage' ));
@@ -44,6 +46,22 @@ class DashboardController extends Controller
         // dd($liste);
         return view('layouts.navigation', compact('liste', 'user'));
     }
+
+    public function createConnectedAccount($user)
+        {
+            Stripe::setApiKey(config('stripe.secret'));
+
+            $account = Account::create([
+                'type' => 'express',
+                'country' => 'FR',
+                'email' => $user->email,
+            ]);
+
+            $user->stripe_account_id = $account->id;
+            $user->save();
+
+            return $account;
+        }
 
     public function addProductWish(Request $request, $title)
     {

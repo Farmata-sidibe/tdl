@@ -41,7 +41,8 @@ class ReservationController extends Controller
             ->notify(new ReservationNotification($reservation));
 
         // Envoi de l'email de notification au propriétaire de la liste
-        Notification::route('mail', $liste->owner->email)
+
+        Notification::route('mail', $liste->user->email)
             ->notify(new ReservationNotification($reservation));
 
         return redirect()->back()->with('success', 'Produit réservé avec succès.');
