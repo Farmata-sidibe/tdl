@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('cagnottes', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total_amount', 8, 2)->nullable();
-            $table->decimal('current_amount', 8, 2)->nullable();
+            $table->decimal('total_amount', 15, 2)->nullable()->default(0);
+            $table->decimal('current_amount', 15, 2)->nullable()->default(0);
             $table->unsignedBigInteger('liste_id')->unique()->nullable();
             $table->foreign('liste_id')->references('id')->on('listes')->nullOnDelete();
             $table->timestamps();

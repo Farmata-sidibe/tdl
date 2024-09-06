@@ -108,34 +108,34 @@ class ListeController extends Controller
         $liste = Liste::where('uuid', $uuid)->with('user', 'cagnotte', 'products')->firstOrFail();
         $user = $liste->user()->first();
         $total = $liste->total_amount;
-        $current_amount = $liste->cagnotte->current_amount;
+        $current_amount = $liste->cagnotte->current_amount ?? 0;
         $percentage = $total > 0 ? ($current_amount / $total) * 100 : 0;
 
         return view('liste.showBySlug', compact('liste', 'current_amount', 'total', 'user', 'percentage'));
     }
 
     // Méthode pour participer à la cagnotte
-    public function participate(Request $request, $uuid)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'amount' => 'required|numeric|min:1',
-        ]);
+    // public function participate(Request $request, $uuid)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|email|max:255',
+    //         'amount' => 'required|numeric|min:1',
+    //     ]);
 
-        Participant::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'amount' => $request->amount,
-            'date_contribution' => Carbon::now(),
-        ]);
+    //     Participant::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'amount' => $request->amount,
+    //         'date_contribution' => Carbon::now(),
+    //     ]);
 
-        $liste = Liste::where('uuid', $uuid)->firstOrFail();
-        $cagnotte = $liste->cagnotte();
-        $cagnotte->update(['current_amount' => $cagnotte->current_amount + $request->amount]);
+    //     $liste = Liste::where('uuid', $uuid)->firstOrFail();
+    //     $cagnotte = $liste->cagnotte();
+    //     $cagnotte->update(['current_amount' => $cagnotte->current_amount + $request->amount]);
 
-        return redirect()->route('liste.showBySlug', $liste->uuid)->with('success', 'Contribution ajoutée avec succès!');
-    }
+    //     return redirect()->route('liste.showBySlug', $liste->uuid)->with('success', 'Contribution ajoutée avec succès!');
+    // }
 
     /**
      * Display the specified resource.

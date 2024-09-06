@@ -27,62 +27,60 @@
 
 </head>
 <body>
-    {{-- <div class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+    <div class="">
+        <form action="">
+            <h1>inscrivez vous</h1>
+            <div class="createUser">
+                <div>
+                    <label for="nom">Votre nom complet</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="email">email</label>
+                    <input type="email">
+                </div>
 
-            <div>
-                <label for="tw-modal" class="cursor-pointer rounded bg-black px-8 py-4 text-white active:bg-slate-400">
-                    Open modal1
-                </label>
+                <div>
+                    <label for="password">Votre mot de passe</label>
+                    <input type="password">
+                </div>
+                <a href="#crealite" class="btnnext">deuxieme étape créer ma liste</a>
             </div>
+            <div class="createListe hidden" id="crealite">
+            <h2>Creer votre liste</h2>
+
+                <div>
+                    <label for="titre">titre liste</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="date-terme">Date du terme</label>
+                    <input type="text">
+                </div>
+
+                <div>
+                    <label for="conjoint">Votre conjoint</label>
+                    <input type="text">
+                </div>
+            </div>
+            <button class="submitAccount hidden">envoyer</button>
+        </form>
+    </div>
+
+    <script>
+        let btncreateuser = document.querySelector(".btnnext");
+        let btnSubmit = document.querySelector(".submitAccount");
+
+        let blocCreateuser = document.querySelector(".createUser");
+        let blocCreateliste = document.querySelector(".createListe");
+
+        btncreateuser.onclick = function () {
+            blocCreateliste.style.display = "flex";
+            blocCreateuser.style.display = "none";
+            btnSubmit.style.display = "flex";
+        };
 
 
-            <input type="checkbox" id="tw-modal" class="peer fixed appearance-none opacity-0">
-
-
-            <label for="tw-modal" class="pointer-events-none invisible fixed inset-0 flex cursor-pointer
-            items-center justify-center overflow-hidden overscroll-contain bg-slate-700/30 opacity-0
-            transition-all duration-200 ease-in-out peer-checked:pointer-events-auto peer-checked:visible
-            peer-checked:opacity-100 peer-checked:[&>*]:translate-y-0 peer-checked:[&>*]:scale-100">
-
-
-            <label for="" class="max-h-[calc(100vh - 5em)] h-fit max-w-lg scale-90 overflow-y-auto
-            overscroll-contain rounded-md bg-white p-6 text-black shadow-2xl transition">
-                <h3 class="text-lg font-bold">Modal opened 1</h3>
-                <p class="py-4">consectetur adipisicing elit. Deserunt ipsum delectus rerum provident quasi consequuntur obcaecati harum est possimus iste accusantium officiis debitis illum itaque vel modi animi, tenetur id. </p>
-            </label>
-            </label>
-    </div> --}}
-
-    {{-- <div class="">
-
-        <div>
-            <label for="tw1-modal" class="cursor-pointer rounded bg-black px-8 py-4 text-white active:bg-slate-400">
-                Open modal2
-            </label>
-        </div>
-
-
-        <input type="checkbox" id="tw1-modal" class="peer fixed appearance-none opacity-0">
-
-
-        <label for="tw1-modal" class="pointer-events-none invisible fixed inset-0 flex cursor-pointer
-        items-center justify-center overflow-hidden overscroll-contain bg-slate-700/30 opacity-0
-        transition-all duration-200 ease-in-out peer-checked:pointer-events-auto peer-checked:visible
-        peer-checked:opacity-100 peer-checked:[&>*]:translate-y-0 peer-checked:[&>*]:scale-100">
-
-
-        <label for="tw1-modal" class="max-h-[calc(100vh - 5em)] h-fit max-w-lg scale-90 overflow-y-auto
-        overscroll-contain rounded-md bg-white p-6 text-black shadow-2xl transition">
-            <h3 class="text-lg font-bold">Modal opened 2</h3>
-            <p class="py-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt ipsum delectus rerum provident quasi consequuntur obcaecati harum est possimus iste accusantium officiis debitis illum itaque vel modi animi, tenetur id. </p>
-        </label>
-        </label>
-    </div> --}}
-
-   {{-- <x-sidebar listeId="{{ route('listes.edit', $liste->id) }}" /> --}}
-
-
-    <x-nav/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    </script>
 </body>
 </html>

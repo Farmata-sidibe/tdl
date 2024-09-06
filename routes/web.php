@@ -12,7 +12,8 @@ use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\TransferController;
 
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -35,6 +36,15 @@ Route::get('/', function () {
 Route::get('/blog', function () {
     return view('blog');
 });
+
+Route::get('/mentions-legales', function () {
+    return view('mentions-legales');
+});
+
+Route::get('/politique-confidentialite', function () {
+    return view('politique-confidentialite');
+});
+
 
 // routes/web.php
 
@@ -92,7 +102,7 @@ Route::resource('listes', ListeController::class);
 
 // Route::resource('cagnotte', CagnotteController::class);
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // Route::get('/dashboard', [DashboardController::class, 'indexListe'])->name('dashboard');
     Route::post('/product/add/{title}', [DashboardController::class, 'addProductWish'])->name('dashboard.addProductWish');
@@ -106,5 +116,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 require __DIR__ . '/auth.php';

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->decimal('amount', 8, 2)->NotNullable();
             $table->string('date_contribution')->NotNullable();
             // $table->foreignId('cagnotte_id')->constrained()->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\Product::class);
-            $table->foreignIdFor(\App\Models\Cagnotte::class);
+            $table->foreignIdFor(\App\Models\Product::class)->nullable();
+            $table->foreignIdFor(\App\Models\Cagnotte::class)->nullable();
             $table->timestamps();
         });
     }

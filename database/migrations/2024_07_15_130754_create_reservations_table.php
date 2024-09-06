@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('liste_id');
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->unsignedBigInteger('liste_id')->nullable();
             $table->string('visitor_name');
             $table->string('visitor_email');
             $table->timestamps();
