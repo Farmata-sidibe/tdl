@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Liste;
 use App\Models\Participant;
+use App\Models\Cagnotte;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,6 +84,7 @@ class StripeController extends Controller
 
     public function checkoutPost(Request $request, Liste $liste)
     {
+        $cagnotte = $liste->cagnotte()->first();
         Stripe::setApiKey(config('services.stripe.secret'));
         $session = Session::create([
             'payment_method_types' => ['card'],
@@ -113,6 +115,8 @@ class StripeController extends Controller
             'date_contribution' => now(),
             'liste_id' => $liste->id,
         ]);
+        $cagnotte->current_amount += $request->amount;
+        $cagnotte->save();
 
         return redirect($session->url, 303);
     }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
             $table->string('name')->NotNullable();
-            $table->string('email')->unique();
+            $table->string('email')->NotNullable();
             $table->decimal('amount', 8, 2)->NotNullable();
             $table->string('date_contribution')->NotNullable();
             // $table->foreignId('cagnotte_id')->constrained()->onDelete('cascade');

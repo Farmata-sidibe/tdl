@@ -1,18 +1,14 @@
 @props(['image', 'marque', 'price', 'title', 'liste_id', 'titleProduct', 'reserved'])
 
-<div class="bg-[#FFF] hover:shadow-xl p-2">
-
+<div class="card-wish bg-[#FFF] hover:shadow-xl p-2">
+    @if($reserved > 0)
+        <div class="ruban left"><span class="bg-vertPoudre">Réservé</span></div>
+    @endif
     <img src="{{ $image }}" class="mb-[10px] h-[18em] w-[16em] object-cover" alt="">
 
     <div class="flex flex-row justify-between items-center">
         <div class="flex flex-col gap-[10px]">
-            @if($reserved > 0)
-                <div class="">
-                    <span class="border-1 border-[#ff0000] text-[#fffffff1] bg-[#ff0000] px-3 py-1">
-                        {{$reserved}}
-                    </span>
-                </div>
-            @endif
+
             <h4 class="font-[900] text-[1em]"> {{ $marque }} </h4>
             <h4 class="font-[900] text-[1em]">{{ $price }} </h4>
             <p class="text-[#242424] text-[14px]">

@@ -28,56 +28,56 @@ class ListeController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * $listes->perPage());
     }
 
-    public function indexListe(Request $request)
-    {
-        $request->merge(['user_id' => Auth::id()]);
-        $user = Auth::user();
-        // $liste = Liste::find($request->all());
-        $liste = $request->user()->listes()->first();
-        // dd($liste);
-        return view('layouts.navigation', compact('liste', 'user'));
-    }
+    // public function indexListe(Request $request)
+    // {
+    //     $request->merge(['user_id' => Auth::id()]);
+    //     $user = Auth::user();
+    //     // $liste = Liste::find($request->all());
+    //     $liste = $request->user()->listes()->first();
+    //     // dd($liste);
+    //     return view('layouts.navigation', compact('liste', 'user'));
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
-    {
-        $liste = new Liste();
-        $cagnotte = new Cagnotte();
-        $userId = Auth::id();
+    // public function create(): View
+    // {
+    //     $liste = new Liste();
+    //     $cagnotte = new Cagnotte();
+    //     $userId = Auth::id();
 
-        return view('liste.create', compact('liste', 'userId'));
-    }
+    //     return view('liste.create', compact('liste', 'userId'));
+    // }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ListeRequest $request): RedirectResponse
-    {
-        $request->merge(['user_id' => Auth::id()]);
+    // public function store(ListeRequest $request): RedirectResponse
+    // {
+    //     $request->merge(['user_id' => Auth::id()]);
 
-        // Create a new Liste object with the validated data, but don't save it yet
-        $liste = Liste::create($request->all());
+    //     // Create a new Liste object with the validated data, but don't save it yet
+    //     $liste = Liste::create($request->all());
 
-        // Create a new Cagnotte for the new Liste
-        $cagnotte = new Cagnotte([
-            'total_amount' => 0,
-            'current_amount' => 0,
-        ]);
+    //     // Create a new Cagnotte for the new Liste
+    //     $cagnotte = new Cagnotte([
+    //         'total_amount' => 0,
+    //         'current_amount' => 0,
+    //     ]);
 
-        // Créez un compte connecté Stripe pour la liste
-        $paymentService = new PaymentService();
-        $stripeAccountId = $paymentService->createStripeAccount(auth()->user());
+    //     // Créez un compte connecté Stripe pour la liste
+    //     $paymentService = new PaymentService();
+    //     $stripeAccountId = $paymentService->createStripeAccount(auth()->user());
 
-        $liste->update(['stripe_account_id' => $stripeAccountId]);
+    //     $liste->update(['stripe_account_id' => $stripeAccountId]);
 
-        // Save the new Cagnotte and set the ID of the Liste's cagnotte_id column
-        $liste->cagnotte()->save($cagnotte);
+    //     // Save the new Cagnotte and set the ID of the Liste's cagnotte_id column
+    //     $liste->cagnotte()->save($cagnotte);
 
-        return Redirect::route('dashboard')
-            ->with('success', 'Liste created successfully.');
-    }
+    //     return Redirect::route('dashboard')
+    //         ->with('success', 'Liste created successfully.');
+    // }
 
     // Rechercher la liste par l'UUID
     // $liste = Liste::where('uuid', $uuid)->firstOrFail();

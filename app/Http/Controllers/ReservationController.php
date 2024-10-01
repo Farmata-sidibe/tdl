@@ -6,6 +6,8 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Liste;
 use App\Models\ListeProduct;
+use App\Models\Product;
+
 use App\Notifications\ReservationNotification;
 use Illuminate\Support\Facades\Notification;
 
@@ -33,6 +35,11 @@ class ReservationController extends Controller
             ->first();
         $ListeProduct->reserved = true;
         $ListeProduct->save();
+
+        $Product = Product::where('id', $request->product_id)
+            ->first();
+        $Product->reserved = true;
+        $Product->save();
 
         $liste = Liste::find($request->liste_id);
 

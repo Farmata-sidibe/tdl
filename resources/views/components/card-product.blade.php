@@ -65,27 +65,22 @@
                         {{$slot}}
 
                         <div class="btnFinish flex flex-row flex-wrap gap-[20px]">
-                            {{-- <a href="#">
-                            <button class="bg-[#FF91B2] text-[#FFF] text-[10px] px-[15px] py-[10px] rounded-[20px]">Ajouter à ma
-                                liste
-                            </button>
-                        </a> --}}
                             <form action="{{ route('dashboard.addProductWish', ['title' => $title]) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Ajouter à mes envies</button>
+                                <x-primary-button type="submit" >Ajouter à mes envies</x-primary-button>
                             </form>
-
 
                             <a href="{{ $url }}">
                                 <button
-                                    class="flex flex-row gap-[10px] bg-[#F6F3EC] text-[10px] text-[#FF91B2] px-[15px] py-[10px] rounded-[20px]">
+                                    class="flex flex-row inline-flex items-center gap-[10px] bg-[#F6F3EC] font-semibold text-xs text-[#FF91B2] px-4 py-2 rounded-md transform active:scale-x-75 transition-transform">
                                     @svg('shop', ['width' => '20px', 'height' => '20px', 'stroke' => '#FF91B2']) Acheter directement
                                 </button>
                             </a>
 
                             <a href="#">
                                 <button
-                                    class="flex flex-row gap-[10px] ring-1 ring-[#FF91B2] text-[10px] text-[#FF91B2] px-[15px] py-[10px] rounded-[20px]">@svg('fav', ['width' => '20px', 'height' => '20px', 'stroke' => '#FF91B2'])
+                                    class="flex flex-row inline-flex items-center gap-[10px] ring-1 ring-[#FF91B2] font-semibold text-xs text-[#FF91B2] px-4 py-2 rounded-md transform active:scale-x-75 transition-transform">
+                                    @svg('fav', ['width' => '20px', 'height' => '20px', 'stroke' => '#FF91B2'])
                                     Favori
                                 </button>
                             </a>

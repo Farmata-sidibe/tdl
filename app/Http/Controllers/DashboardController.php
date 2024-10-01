@@ -37,31 +37,31 @@ class DashboardController extends Controller
         return view('dashboard', compact('user', 'liste', 'total', 'total_amount', 'current_amount','percentage' ));
     }
 
-    public function indexListe(Request $request)
-    {
-        $request->merge(['user_id' => Auth::id()]);
-        $user = Auth::user();
-        // $liste = Liste::find($request->all());
-        $liste = $request->user()->listes()->first();
-        // dd($liste);
-        return view('layouts.navigation', compact('liste', 'user'));
-    }
+    // public function indexListe(Request $request)
+    // {
+    //     $request->merge(['user_id' => Auth::id()]);
+    //     $user = Auth::user();
+    //     // $liste = Liste::find($request->all());
+    //     $liste = $request->user()->listes()->first();
+    //     // dd($liste);
+    //     return view('layouts.navigation', compact('liste', 'user'));
+    // }
 
-    public function createConnectedAccount($user)
-        {
-            Stripe::setApiKey(config('stripe.secret'));
+    // public function createConnectedAccount($user)
+    //     {
+    //         Stripe::setApiKey(config('stripe.secret'));
 
-            $account = Account::create([
-                'type' => 'express',
-                'country' => 'FR',
-                'email' => $user->email,
-            ]);
+    //         $account = Account::create([
+    //             'type' => 'express',
+    //             'country' => 'FR',
+    //             'email' => $user->email,
+    //         ]);
 
-            $user->stripe_account_id = $account->id;
-            $user->save();
+    //         $user->stripe_account_id = $account->id;
+    //         $user->save();
 
-            return $account;
-        }
+    //         return $account;
+    //     }
 
     public function addProductWish(Request $request, $title)
     {

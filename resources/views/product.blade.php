@@ -35,7 +35,7 @@
         <x-navbar />
         @endauth
 
-        <div class="header_product bg-[#F6F3EC] px-[60px] py-[20px] w-[100%] flex flex-row justify-center items-center">
+        <div class=" header_product bg-[#F6F3EC] px-[60px] py-[20px] w-[100%] flex flex-row justify-center items-center">
 
             <div class=" item_img flex flex-col items-end">
                 <img src="{{ asset('img/omid-armin-UXnO_ZRgKXA-unsplash-removebg-preview.png') }}" alt="">
@@ -57,7 +57,9 @@
         </div>
     </div>
 
-    <section class="px-[60px]">
+    
+
+    <section class="px-[60px] h-[100vh]">
         <h2 class="mb-[50px]">Nos Categories</h2>
 
         <div class="flex flex-row justify-between">
@@ -81,7 +83,7 @@
         </div>
     </section>
 
-    <section class=" section_product px-[60px]">
+    <section class="section_product px-[60px]">
         <h2>Les indispensables pour bébé</h2>
         <div class="btnCategory flex flex-row items-center justify-between">
             <button class="btn-link active text-[#505050] px-[17px] py-[9px]" id="mode">Mode</button>
