@@ -19,7 +19,7 @@ public function fetchData()
         $client = new Client();
         try {
 
-            $response = $client->get('http://localhost:8080/all');
+            $response = $client->get('http://localhost:8081/all');
             $statusCode = $response->getStatusCode();
             $arrayData = json_decode($response->getBody(), true);
 
