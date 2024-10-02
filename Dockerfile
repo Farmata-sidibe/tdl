@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libzip-dev \
     zip \
+    git \
+    curl \
     unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
@@ -15,17 +17,24 @@ RUN apt-get update && apt-get install -y \
 # Installer les extensions PHP
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
+# Ajouter le dépôt NodeSource pour installer la version LTS de Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs
+
+# Forcer l'installation de npx et tailwindcss
+RUN npm install -g --force npx tailwindcss
+
 # Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Définir le répertoire de travail
-WORKDIR /var/www/html
-
+WORKDIR ./
 # Copier le contenu du projet dans le conteneur
 COPY . .
 
 # Installer les dépendances Composer
 RUN composer install --no-dev --optimize-autoloader
+
 
 # Fixer les permissions sur les dossiers critiques
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \

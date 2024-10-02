@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/svg" sizes="32x32" href="{{ asset('icon-tdl.svg') }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>{{ config('app.name', 'TDL') }}</title>
 
     <!-- Fonts -->
