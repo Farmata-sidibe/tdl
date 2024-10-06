@@ -19,7 +19,7 @@ public function fetchData()
         $client = new Client();
         try {
 
-            $response = $client->get('http://localhost:8081/all');
+            $response = $client->get('http://tdl-api:8081/');
             $statusCode = $response->getStatusCode();
             $arrayData = json_decode($response->getBody(), true);
 
@@ -34,7 +34,7 @@ public function fetchData()
                         'rooms' => $arrayData['data']['rooms'],
                         'eveils' => $arrayData['data']['eveils'],
                         'allaitements' => $arrayData['data']['allaitements'],
-                        'biberons' => $arrayData['data']['biberons'],
+                        'toilettes' => $arrayData['data']['toilettes'],
                     ]
                 );
             } else {
