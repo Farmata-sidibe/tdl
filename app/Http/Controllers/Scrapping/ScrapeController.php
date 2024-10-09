@@ -19,7 +19,7 @@ public function fetchData()
         $client = new Client();
         try {
 
-            $response = $client->get('http://tdl-api:8081/');
+            $response = $client->get('http://localhost:8081/');
             $statusCode = $response->getStatusCode();
             $arrayData = json_decode($response->getBody(), true);
 

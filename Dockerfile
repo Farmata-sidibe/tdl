@@ -35,7 +35,7 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 # Installer les dépendances npm
-RUN npm install
+RUN npm install && npm install vite --save-dev
 
 # Compiler les assets avec npm
 RUN npm run build
@@ -45,7 +45,8 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
     && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Exposer le port 8000
-EXPOSE 8000
+EXPOSE 8000 5173
 
 # Lancer l'application Laravel
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=8000 & npm run dev --host=0.0.0.0"]
