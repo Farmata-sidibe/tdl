@@ -74,12 +74,11 @@ class DashboardController extends Controller
         }
 
         // Fetch product details from the API
-        $response = Http::get("http://localhost:8080/all", ['name' => $title]);
-
+        $response = Http::get(env('API_URL'), ['name' => $title]);
         if ($response->successful()) {
             $data = $response->json();
             $productData = collect($data['data']['others'])
-                            ->concat($data['data']['biberons'])
+                            ->concat($data['data']['toilettes'])
                             ->concat($data['data']['modes'])
                             ->concat($data['data']['poussettes'])
                             ->concat($data['data']['rooms'])
