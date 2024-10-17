@@ -17,11 +17,12 @@ if [ -f "artisan" ]; then
 
     # Installer les dépendances NPM et compiler les assets avec Vite
     echo "Installation des dépendances NPM et compilation des assets..."
+    npm uninstall bootstrap@latest
     npm uninstall sass@latest
+    npm install bootstrap@latest
     npm install sass@latest
     npm install -g --force npx tailwindcss
     npm install
-    npm run build
     npm run dev -- --host --port 5174 &
 
 else

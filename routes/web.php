@@ -88,6 +88,7 @@ Route::get('payment/cancel', [StripeController::class, 'cancel'])->name('cancel'
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/', [ScrapeController::class, 'fetchData'])->name('product');
+
 });
 
 Route::get('/params', function () {

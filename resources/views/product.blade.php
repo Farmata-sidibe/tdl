@@ -19,10 +19,9 @@
 
     <!-- Script -->
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-
     <script src="https://cdn.tailwindcss.com"></script>
 
-    @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/script.js', 'resources/scss/navUser.scss'])
+    @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/script.js', 'resources/js/loadMoreProducts.js', 'resources/scss/navUser.scss'])
 </head>
 
 <body>
@@ -57,7 +56,7 @@
         </div>
     </div>
 
-    
+
 
     <section class="px-[60px] h-[100vh]">
         <h2 class="mb-[50px]">Nos Categories</h2>
@@ -95,7 +94,7 @@
         </div>
 
         <div class="product_list w-[100%] py-[60px]  flex flex-col items-center justify-center gap-[50px]">
-            <div class="mode bloc flex flex-row justify-center gap-[40px] flex-wrap">
+            <div class="mode bloc flex flex-row justify-center gap-[40px] flex-wrap ">
                 @if (isset($message))
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -122,6 +121,23 @@
                         @endif
                     @endforeach
                 @endif
+
+                <!-- Pagination -->
+                {{-- @if (isset($totalPagesMode) && $totalPagesMode > 1)
+                <nav>
+                    <ul class="pagination flex justify-center mt-6">
+                        @for ($i = 1; $i <= $totalPagesMode; $i++)
+                            <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
+                                <a class="page-link border px-4 py-2 {{ $i == $currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800' }}"
+                                   href="{{ request()->fullUrlWithQuery(['page' => $i]) }}">
+                                    {{ $i }}
+                                </a>
+                            </li>
+                        @endfor
+                    </ul>
+                </nav> --}}
+                @endif
+
             </div>
 
             <div class="poussette bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
@@ -236,8 +252,7 @@
         </div>
     </section>
     <x-footer />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></scrip>
 </body>
 
 </html>
