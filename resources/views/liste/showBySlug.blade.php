@@ -100,19 +100,15 @@
                         Vous pouvez contribuez à la cagnotte avec le montant de votre choix
                        </p>
 
-                        {{-- <form action="{{ route('liste.showBySlug.post') }}" method="POST">
-                            @csrf
-                            <x-primary-button type="submit" id="checkout-button">Contribuer</x-primary-button>
-                        </form> --}}
-                        <form action="{{ route('liste.showBySlug.post', $liste->id) }}" method="POST">
+                        {{-- <form action="{{ route('liste.showBySlug.post', $liste->id) }}" method="POST">
                             @csrf
                             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" placeHolder="Nom complet" required />
                             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" placeHolder="Email" required />
                             <x-text-input id="amount" name="amount" type="number" class="mt-1 block w-full" placeHolder="Montant" required />
                             <br>
                             <x-primary-button type="submit" id="checkout-button">Contribuer</x-primary-button>
-                        </form>
-
+                        </form> --}}
+                        <x-primary-button id="paypal-button-container">Contribuer</x-primary-button>
                     </div>
 
                     <div class=" flex flex-col gap-[10px] bg-white shadow-sm ring-1 ring-[#f5f5f5] h-auto sm:rounded-lg px-[10px] py-[20px]">
@@ -127,5 +123,26 @@
         </div>
 
     </div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
+<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: 'CONTRIBUTION_AMOUNT'  // Le montant de la contribution
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                // mettre à jour la base de données après une contribution et ajouter 2€ pour moi comme commission
+
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
 
 </x-app-layout>

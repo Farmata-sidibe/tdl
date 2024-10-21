@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
             'adress' => ['sometimes','text'],
             'code_postal' => ['sometimes','integer', 'max:5'],
             'ville' => ['sometimes','string', 'max:255'],
-
+            'is_admin' => ['sometimes','boolean'],
         ]);
 
         $user = User::create([

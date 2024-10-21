@@ -5,12 +5,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Scrapping\ScrapeController;
 use App\Http\Controllers\ListeController;
 use App\Http\Controllers\CagnotteController;
-use App\Http\Controllers\WishListController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\TransferController;
+use App\Http\Controllers\UserController;
+
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -88,7 +90,6 @@ Route::get('payment/cancel', [StripeController::class, 'cancel'])->name('cancel'
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/', [ScrapeController::class, 'fetchData'])->name('product');
-
 });
 
 Route::get('/params', function () {
@@ -105,17 +106,41 @@ Route::resource('listes', ListeController::class);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    // Route::get('/dashboard', [DashboardController::class, 'indexListe'])->name('dashboard');
     Route::post('/product/add/{title}', [DashboardController::class, 'addProductWish'])->name('dashboard.addProductWish');
     Route::delete('/product/delete/', [DashboardController::class, 'deleteProductWish'])->name('dashboard.deleteProductWish');
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// middleware admin
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    // Route::resource('/admin/users', ProfileController::class);
+    // Route::resource('/admin/listes', ListeController::class);
+    Route::resource('/admin/users', UserController::class)->names([
+        'index' => 'admin.users.index',
+        'create' => 'admin.users.create',
+        'store' => 'admin.users.store',
+        'show' => 'admin.users.show',
+        'edit' => 'admin.users.edit',
+        'update' => 'admin.users.update',
+        'destroy' => 'admin.users.destroy',
+    ]);
+    Route::resource('/admin/listes', ListeController::class)->names([
+        'index' => 'admin.listes.index',
+        'create' => 'admin.listes.create',
+        'store' => 'admin.listes.store',
+        'show' => 'admin.listes.show',
+        'edit' => 'admin.listes.edit',
+        'update' => 'admin.listes.update',
+        'destroy' => 'admin.listes.destroy',
+    ]);
+});
+
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');

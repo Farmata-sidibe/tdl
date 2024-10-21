@@ -19,13 +19,21 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        $user = $request->user();
-        $liste = $user->listes()->first();
+        // profile edit user if admin and if not admin
+        if (Auth::user()->is_admin) {
+            $user = Auth::user();
+            return view('admin.users.edit', compact('user'));
+        } else {
+            $user = $request->user();
+            $liste = $user->listes()->first();
 
-        return view('profile.edit', [
-            'user' => $user,
-            'liste' => $liste,
-        ]);
+            return view('profile.edit', [
+                'user' => $user,
+                'liste' => $liste,
+            ]);
+        }
+
+
     }
 
 
@@ -34,15 +42,30 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        // update user if admin and if not admin
+        if (Auth::user()->is_admin) {
+            $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+            if ($request->user()->isDirty('email')) {
+                $request->user()->email_verified_at = null;
+            }
+
+            $request->user()->save();
+
+            return Redirect::route('admin.users.edit')->with('status', 'profile-updated');
+        }else{
+            $request->user()->fill($request->validated());
+
+            if ($request->user()->isDirty('email')) {
+                $request->user()->email_verified_at = null;
+            }
+
+            $request->user()->save();
+
+            return Redirect::route('profile.edit')->with('status', 'profile-updated');
         }
 
-        $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
@@ -50,19 +73,38 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+        // destroy user if admin and if not admin
+        if (Auth::user()->is_admin) {
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required', 'current_password'],
+            ]);
 
-        $user = $request->user();
+            $user = $request->user();
 
-        Auth::logout();
+            Auth::logout();
 
-        $user->delete();
+            $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+            return Redirect::to('/admin');
+        }else{
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required', 'current_password'],
+            ]);
+
+            $user = $request->user();
+
+            Auth::logout();
+
+            $user->delete();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return Redirect::to('/');
+        }
+
     }
 }

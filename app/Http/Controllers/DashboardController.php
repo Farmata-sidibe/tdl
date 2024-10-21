@@ -16,7 +16,7 @@ class DashboardController extends Controller
     {
         $request->merge(['user_id' => Auth::id()]);
         $user = Auth::user();
-        // $liste = Liste::find($request->all());
+        
         $liste = $request->user()->listes()->first();
         $cagnotte = $liste->cagnotte()->first();
 

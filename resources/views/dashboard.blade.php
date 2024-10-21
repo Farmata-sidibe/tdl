@@ -2,7 +2,7 @@
 
     <div class="py-12">
 
-        <div class="max-w-[85rem] mx-auto sm:px-6 lg:px-8 flex flex-col-reverse items-center lg:justify-between lg:flex-wrap lg:flex-row lg:items-start">
+        <div class="max-w-[85rem] mx-auto sm:px-6 lg:px-8 flex flex-col-reverse items-center lg:justify-between lg:flex-row lg:items-start">
 
             {{-- barre right --}}
             <div class="w-[68vw] flex flex-col gap-[20px] px-[5px] py-[5px]  bg-white light:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
