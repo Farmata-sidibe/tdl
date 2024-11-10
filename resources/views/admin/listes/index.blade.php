@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Les listes des utilisateurs</h1>
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -15,48 +14,60 @@
                 <div class="w-full">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Show') }} Liste</h1>
-                            <p class="mt-2 text-sm text-gray-700">Details of {{ __('Liste') }}.</p>
+                            <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Listes') }}</h1>
+                            <p class="mt-2 text-sm text-gray-700">A list of all the {{ __('Listes') }}.</p>
                         </div>
                         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                            <a type="button" href="{{ route('listes.index') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>
+                            <a type="button" href="{{ route('admin.listes.create') }}" class="block rounded-md bg-[#FF91B2] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#FF91B2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF91B2]">Add new</a>
                         </div>
                     </div>
 
                     <div class="flow-root">
                         <div class="mt-8 overflow-x-auto">
                             <div class="inline-block min-w-full py-2 align-middle">
-                                <div class="mt-6 border-t border-gray-100">
-                                    <dl class="divide-y divide-gray-100">
+                                <table class="w-full divide-y divide-gray-300">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">No</th>
 
-                                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Title</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $liste->title }}</dd>
-                                </div>
-                                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Description</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $liste->description }}</dd>
-                                </div>
-                                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Datebirth</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $liste->dateBirth }}</dd>
-                                </div>
-                                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">partner</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $liste->partner }}</dd>
-                                </div>
-                                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">User Id</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $liste->user_id }}</dd>
-                                </div>
-                                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Cagnotte Id</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $liste->cagnotte_id }}</dd>
-                                </div>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Name</th>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Description</th>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Datebirth</th>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">partner</th>
 
-                                    </dl>
+                                        <th scope="col" class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                    @foreach ($listes as $liste)
+                                        <tr class="even:bg-gray-50">
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
+
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->title }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->description }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->dateBirth->format("d/m/Y") }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $liste->partner }}</td>
+
+
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
+                                                <form action="{{ route('admin.listes.destroy', $liste->id) }}" method="POST">
+                                                    <a href="{{ route('admin.listes.show', $liste->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
+                                                    <a href="{{ route('admin.listes.edit', $liste->id) }}" class="text-vertPoudre font-bold hover:text-indigo-900  mr-2">{{ __('Edit') }}</a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="{{ route('admin.listes.destroy', $liste->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Delete') }}</a>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+
+                                <div class="mt-4 px-4">
+                                    {!! $listes->withQueryString()->links() !!}
                                 </div>
                             </div>
+                            {{--  --}}
                         </div>
                     </div>
                 </div>

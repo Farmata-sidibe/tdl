@@ -13,6 +13,7 @@ class Cagnotte extends Model
     protected $fillable = [
         'total_amount',
         'current_amount',
+        'is_active'
     ];
 
     /**

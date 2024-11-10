@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('current_amount', 15, 2)->nullable()->default(0);
             $table->unsignedBigInteger('liste_id')->unique()->nullable();
             $table->foreign('liste_id')->references('id')->on('listes')->nullOnDelete();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

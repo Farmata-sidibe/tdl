@@ -25,16 +25,16 @@ class ListeRequest extends FormRequest
      * @return array
      */
 
-    public function rules()
+    public function rules():array
     {
 
         return [
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'dateBirth' => 'required|string|max:255',
-            'partner' => 'nullable|string|max:255',
-            // 'cagnotte_id' => 'nullable|exists:cagnottes,id',
-            // 'user_id' => 'required|exists:users,id', Rule::unique('listes')->ignore($this->liste),
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'dateBirth' => ['nullable', 'date'],
+            'partner' => ['nullable', 'string', 'max:255'],
+            'cagnotte_id' => ['nullable|exists:cagnottes,id'],
+            'user_id' => ['nullable|exists:users,id'],
         ];
     }
 }

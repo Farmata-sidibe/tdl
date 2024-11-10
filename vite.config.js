@@ -8,6 +8,12 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/scss/app.scss',
+                    'resources/js/script.js',
+                    'resources/scss/navUser.scss',
+                    'resources/scss/product.scss',
+                    'resources/js/dashboard.js',
+
+
             ],
             refresh: true,
         }),

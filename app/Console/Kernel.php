@@ -20,9 +20,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->call(function () {
-            $oneWeekBefore = now()->addWeek();
-            $reservations = Reservation::whereHas('liste', function ($query) use ($oneWeekBefore) {
-                $query->where('dateBirth', '=', $oneWeekBefore->format('d/m/Y'));
+            $oneMonthBefore = now()->addMonth();
+            $reservations = Reservation::whereHas('liste', function ($query) use ($oneMonthBefore) {
+                $query->where('dateBirth', '=', $oneMonthBefore->format('d/m/Y'));
             })->get();
 
             foreach ($reservations as $reservation) {

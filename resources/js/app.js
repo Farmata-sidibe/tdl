@@ -41,83 +41,71 @@ btns.forEach((link) => {
 // });
 
 // SHOW params
-let btnProfile = document.getElementById("profile");
-let btnDescription = document.getElementById("description");
-let btnBancaire = document.getElementById("bancaire");
-let btnCagnotte = document.getElementById("cagnotte");
-let btnHistorique = document.getElementById("historique");
+// let btnProfile = document.getElementById("profile");
+// let btnDescription = document.getElementById("description");
+// let btnBancaire = document.getElementById("bancaire");
+// let btnCagnotte = document.getElementById("cagnotte");
+// let btnHistorique = document.getElementById("historique");
 
 
 
+// let blocDescription = document.querySelector(".description");
+// let blocProfile = document.querySelector(".profile");
+// let blocBancaire = document.querySelector(".bancaire");
+// let blocCagnotte = document.querySelector(".cagnotte");
+// let blocHistorique = document.querySelector(".historique");
 
 
+// btnProfile.onclick = function () {
+//     console.log('click')
+//     blocProfile.style.display = "flex";
+//     blocDescription.style.display = "none";
+//     blocBancaire.style.display = "none";
+
+// };
+
+// btnProfile.onclick = function () {
+//     console.log('click')
+//     blocProfile.style.display = "flex";
+//     blocDescription.style.display = "none";
+//     blocBancaire.style.display = "none";
+
+// };
+
+// btnDescription.onclick = function () {
+//     blocProfile.style.display = "none";
+//     blocDescription.style.display = "flex";
+//     blocBancaire.style.display = "none";
+//     blocHistorique.style.display = "none";
+//     blocCagnotte.style.display = "none";
+
+// };
+// btnBancaire.onclick = function () {
+//     blocProfile.style.display = "none";
+//     blocDescription.style.display = "none";
+//     blocHistorique.style.display = "none";
+//     blocCagnotte.style.display = "none";
+//     blocBancaire.style.display = "flex";
+// };
+
+// btnCagnotte.onclick = function () {
+//     blocProfile.style.display = "none";
+//     blocDescription.style.display = "none";
+//     blocBancaire.style.display = "none";
+//     blocHistorique.style.display = "none";
+//     blocCagnotte.style.display = "flex";
+
+// };
+
+// btnHistorique.onclick = function () {
+//     blocProfile.style.display = "none";
+//     blocDescription.style.display = "none";
+//     blocBancaire.style.display = "none";
+//     blocCagnotte.style.display = "none";
+//     blocHistorique.style.display = "flex";
 
 
-let blocDescription = document.querySelector(".description");
-let blocProfile = document.querySelector(".profile");
-let blocBancaire = document.querySelector(".bancaire");
-let blocCagnotte = document.querySelector(".cagnotte");
-let blocHistorique = document.querySelector(".historique");
-
-
-
-
-
-
-
-
-btnProfile.onclick = function () {
-    console.log('click')
-    blocProfile.style.display = "flex";
-    blocDescription.style.display = "none";
-    blocBancaire.style.display = "none";
-
-};
-
-
-
-btnProfile.onclick = function () {
-    console.log('click')
-    blocProfile.style.display = "flex";
-    blocDescription.style.display = "none";
-    blocBancaire.style.display = "none";
-
-};
-
-btnDescription.onclick = function () {
-    blocProfile.style.display = "none";
-    blocDescription.style.display = "flex";
-    blocBancaire.style.display = "none";
-    blocHistorique.style.display = "none";
-    blocCagnotte.style.display = "none";
-
-};
-btnBancaire.onclick = function () {
-    blocProfile.style.display = "none";
-    blocDescription.style.display = "none";
-    blocHistorique.style.display = "none";
-    blocCagnotte.style.display = "none";
-    blocBancaire.style.display = "flex";
-};
-
-btnCagnotte.onclick = function () {
-    blocProfile.style.display = "none";
-    blocDescription.style.display = "none";
-    blocBancaire.style.display = "none";
-    blocHistorique.style.display = "none";
-    blocCagnotte.style.display = "flex";
-
-};
-
-btnHistorique.onclick = function () {
-    blocProfile.style.display = "none";
-    blocDescription.style.display = "none";
-    blocBancaire.style.display = "none";
-    blocCagnotte.style.display = "none";
-    blocHistorique.style.display = "flex";
-
-
-};
+// };
 
 
 // Fonction pour afficher/cacher un bloc

@@ -15,12 +15,14 @@ class AdminUserSeeder extends Seeder
     {
         //create user admin
         User::factory()->create([
-            'name' => 'Farmata SIDIBE',
-            'email' => 'farmata98hadem@gmail.com',
-            'password' => bcrypt('password'),
+            'name' => env('NAME_ADMIN'),
+            'email' => env('EMAIL_ADMIN'),
+            'password' => bcrypt(env('PASSWORD_ADMIN')),
+            'paypal_email' => env('EMAIL_ADMIN'),
             'is_admin' => true,
-            'phone' => '1234567890',
-            'avatar' => null,
+            'phone' => env('NUMBER_ADMIN'),
+            'profile_image' => 'default-profile.jpg',
+            'cover_image' => 'default-cover.jpg',
             'country' => 'Country',
             'adress' => '123 Street',
             'code_postal' => '12345',

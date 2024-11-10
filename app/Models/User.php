@@ -24,8 +24,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'paypal_email',
         'phone',
-        'avatar',
+        'profile_image',
+        'cover_image',
         'country',
         'adress',
         'code_postal',
@@ -60,7 +62,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-     // Create Stripe account
 
 
 }

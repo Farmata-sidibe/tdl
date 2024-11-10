@@ -44,23 +44,20 @@
 
 
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex flex-row flex-wrap items-center justify-end mt-4 z-[2]">
             <span class="ms-2 text-sm text-gray-600 light:text-gray-400">{{ __('Pas encore membre? ') }}</span>
             @if (Route::has('register'))
-                <a class="underline text-sm text-[#FF91B2] light:text-[#9CC4B9] hover:text-[#f8799f] light:hover:text-[#9CC4B9] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 light:focus:ring-offset-gray-800" href="{{ route('register') }}">
+                <a class="z-[2] underline text-sm text-[#FF91B2] light:text-[#9CC4B9] hover:text-[#f8799f] light:hover:text-[#9CC4B9] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 light:focus:ring-offset-gray-800" href="{{ route('register') }}">
                     {{ __('S\'inscrire') }}
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            <x-primary-button class=" ms-3">
                 {{ __('Se connecter') }}
             </x-primary-button>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-
-        </div>
-
 
     </form>
+
 </x-guest-layout>

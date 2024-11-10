@@ -1,100 +1,118 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
+@section('content')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>TDL</title>
-    <link rel="icon" type="image/svg" sizes="32x32" href="{{ asset('icon-tdl.svg') }}">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
-
-    <!-- Styles -->
-
-    <!-- Script -->
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/script.js', 'resources/js/loadMoreProducts.js', 'resources/scss/navUser.scss'])
-</head>
-
-<body>
-
-
-    <div class="header">
-        @auth
-        @include('layouts.navigation')
-        @else
-        <x-navbar />
-        @endauth
-
-        <div class=" header_product bg-[#F6F3EC] px-[60px] py-[20px] w-[100%] flex flex-row justify-center items-center">
-
+        <div class="py-12 sm:py-24 flex flex-row justify-center items-center">
             <div class=" item_img flex flex-col items-end">
-                <img src="{{ asset('img/omid-armin-UXnO_ZRgKXA-unsplash-removebg-preview.png') }}" alt="">
+                <img src="{{ asset('img/omid-armin-UXnO_ZRgKXA-unsplash-removebg-preview.png') }}" class="hidden lg:block" alt="">
                 <img src="{{ asset('img/train.png') }}" class="w-[7em]" alt="">
             </div>
-            <div class=" item_text flex flex-col items-center">
-                <h1 class="text-[3em] font-bold">Les indispensables</h1>
-                <h2 class="text-[2em] text-[#FF91B2] font-bold ">Pour bébé</h2>
-                <p class="text-center">Découvrez notre petite sélections de produits et <br> accessoires de bébé pour
-                    vous aider à la préparation de votre liste de naissance</p>
+
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mb-8 flex justify-center">
+                    <p
+                        class="relative rounded-full px-4 py-1.5 text-sm leading-6 text-gray-600 ring-1 ring-inset ring-gray-900/10 hover:ring-gray-900/20">
+                        <span class="hidden md:inline">Préparez votre</span>
+                        <a href="#product" target="_blank" class="font-semibold text-vertPoudre">
+                            <span class="absolute inset-0" ></span>valise de maternité ici <span>→</span>
+                        </a>
+                    </p>
+                </div>
+                <div class="mx-auto max-w-2xl text-center">
+                    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                        Les indispensables pour bébé
+                    </h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">
+                        Découvrez notre petite sélections de produits et accessoires de bébé pour
+                    vous aider à la préparation de votre liste de naissance
+                    </p>
+                    <div class="mt-10 flex items-center justify-center gap-x-6">
+                        @if (Auth::check())
+                            @auth
+                                <a href="/dashboard"
+                                    class="rounded-md bg-rose px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-rose focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose">
+                                    Visite
+                                </a>
+                            @endauth
+                            @else
+                                <a href="/register"
+                                class="rounded-md bg-rose px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-rose focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose">
+                                Créez ma liste
+                                </a>
+                        @endif
+                        <a href="#product" class="text-sm font-semibold leading-6 text-gray-900">
+                            les produits
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
             </div>
+
             <div class=" item_img flex flex-col">
                 <img src="{{ asset('img/yoyo-diabolo.png') }}" class="w-[7em]" alt="">
-                <img src="{{ asset('img/juan-encalada-_ENQdIjyPcA-unsplash-removebg-preview.png') }}" alt="">
+                <img src="{{ asset('img/juan-encalada-_ENQdIjyPcA-unsplash-removebg-preview.png') }}" class="hidden lg:block" alt="">
 
             </div>
-
-
         </div>
-    </div>
 
 
 
-    <section class="px-[60px] h-[100vh]">
-        <h2 class="mb-[50px]">Nos Categories</h2>
-
-        <div class="flex flex-row justify-between">
-            <x-card-category url="{{ asset('img/pexels-nicolette-attree-8000848.jpg') }}" category="Soin Toilette" />
-            <x-card-category url="{{ asset('img/yuri-tasso-RjCs9ywcnz8-unsplash.jpg') }}" category="Vêtement" />
-            <x-card-category url="{{ asset('img/pexels-polina-tankilevitch-3875085.jpg') }}" category="Chambre" />
-            <x-card-category url="{{ asset('img/pexels-cottonbro-studio-3661454.jpg') }}" category="Eveil et Balade" />
+    <section class="">
+        <h2 class="mb-[50px] text-center text-[2em] lg:text-[3em] mt-10 font-bold">Nos Categories</h2>
+        <div class="bg-white">
+            <div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 h-full">
+                    <div class="col-span-2 sm:col-span-1 md:col-span-2 bg-gray-50 h-auto md:h-full flex flex-col">
+                        <a href="" class="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 flex-grow">
+                            <img src="{{ asset('img/pexels-nicolette-attree-8000848.jpg') }}" alt="" class="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                            <div class="absolute inset-0 bg-gradient-to-b from-gray-900/25 to-gray-900/5"></div>
+                            <h3 class="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">Soins Toilette</h3>
+                        </a>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1 md:col-span-2 bg-stone-50">
+                        <a href="" class="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 mb-4">
+                            <img src="{{ asset('img/yuri-tasso-RjCs9ywcnz8-unsplash.jpg') }}" alt="" class="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                            <div class="absolute inset-0 bg-gradient-to-b from-gray-900/25 to-gray-900/5"></div>
+                            <h3 class="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">Vêtements</h3>
+                        </a>
+                        <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 lg:grid-cols-2">
+                            <a href="" class="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40">
+                                <img src="{{ asset('img/pexels-polina-tankilevitch-3875085.jpg') }}" alt="" class="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                                <div class="absolute inset-0 bg-gradient-to-b from-gray-900/25 to-gray-900/5"></div>
+                                <h3 class="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">Chambre</h3>
+                            </a>
+                            <a href="" class="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40">
+                                <img src="{{ asset('img/pexels-cottonbro-studio-3661454.jpg') }}" alt="" class="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                                <div class="absolute inset-0 bg-gradient-to-b from-gray-900/25 to-gray-900/5"></div>
+                                <h3 class="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">Eveils</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1 md:col-span-1 bg-sky-50 h-auto md:h-full flex flex-col">
+                        <a href="" class="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 flex-grow">
+                            <img src="{{asset('img/family-autumn-park-man-black-jacket-cute-little-girl-with-parents.jpg')}}" alt="" class="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                            <div class="absolute inset-0 bg-gradient-to-b from-gray-900/25 to-gray-900/5"></div>
+                            <h3 class="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">Balade</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section
-        class="px-[60px] bg-[url({{ asset('img/pexels-singkham-1174589.jpg') }})] h-[80vh] bg-fixed bg-cover flex flex-row items-center justify-center">
-        <div class="bg-[#ffffff] px-[100px] py-[80px] rounded-[15px] flex flex-col items-center gap-[20px]">
-            <h2>Vous avez un lien ?</h2>
-            <p>Vous pouvez ajouter le lien de l’article que vous <br> voulez ajouter dans la liste de vos envies.</p>
-            <button
-                class="bg-[#9CC4B9] text-[#ffffff] rounded-[20px] px-[20px] py-[7px] flex flex-row items-center gap-[10px] font-[700]">
-                @svg('addLink', ['width' => 20, 'height' => 20, 'fill' => '#ffffff'])
-                Ajoutez un lien
-            </button>
-        </div>
-    </section>
 
-    <section class="section_product px-[60px]">
-        <h2>Les indispensables pour bébé</h2>
-        <div class="btnCategory flex flex-row items-center justify-between">
+    <section class="section_product px-[60px] mt-10">
+        <div class="btnCategory flex flex-row flex-wrap items-center justify-around">
             <button class="btn-link active text-[#505050] px-[17px] py-[9px]" id="mode">Mode</button>
             <button class="btn-link text-[#505050] px-[17px] py-[9px]" id="poussette">Poussette</button>
             <button class=" btn-link text-[#505050] px-[17px] py-[9px]" id="chambre">Chambre</button>
             <button class="btn-link text-[#505050] px-[17px] py-[9px]" id="allaitement">Allaitement</button>
+            <button class="btn-link text-[#505050] px-[17px] py-[9px]" id="toilettes">Toilette</button>
             <button class=" btn-link text-[#505050] px-[17px] py-[9px]" id="eveil">Eveil</button>
-            <button class="btn-link text-[#505050] px-[17px] py-[9px]" id="autres">Autres</button>
+            <button class="btn-link text-[#505050] px-[17px] py-[9px]" id="autres">Portage</button>
         </div>
 
-        <div class="product_list w-[100%] py-[60px]  flex flex-col items-center justify-center gap-[50px]">
-            <div class="mode bloc flex flex-row justify-center gap-[40px] flex-wrap ">
+        <div id="product" class="product_list w-[100%] py-[40px] flex flex-col items-center justify-center gap-[40px]">
+            <div class="category mode bloc flex flex-row justify-center gap-[40px] flex-wrap ">
                 @if (isset($message))
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -112,9 +130,16 @@
                                 titleProduct="{{ substr($mode['title'] ?? '', 0, 20) }}{{ strlen($mode['title'] ?? '') > 20 ? '...' : '' }}"
                                 >
                                 @if(isset($mode['size']))
-                                    @foreach($mode['size'] as $size)
-                                        <input type="hidden" name="size[]" value="{{ $size }}">
-                                    @endforeach
+                                    {{-- <input type="hidden" name="size[]" value="{{ $size }}"> --}}
+                                    <div class="mb-4">
+                                        <span class="font-bold text-gray-700 light:text-gray-300">Select Size:</span>
+                                        <div class="flex items-center mt-2">
+                                            @foreach($mode['size'] as $size)
+                                                <button class="bg-gray-300 light:bg-gray-700 text-gray-700 light:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 light:hover:bg-gray-600">{{ $size }}</button>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
                                 @endif
 
                             </x-card-product>
@@ -122,25 +147,9 @@
                     @endforeach
                 @endif
 
-                <!-- Pagination -->
-                {{-- @if (isset($totalPagesMode) && $totalPagesMode > 1)
-                <nav>
-                    <ul class="pagination flex justify-center mt-6">
-                        @for ($i = 1; $i <= $totalPagesMode; $i++)
-                            <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
-                                <a class="page-link border px-4 py-2 {{ $i == $currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800' }}"
-                                   href="{{ request()->fullUrlWithQuery(['page' => $i]) }}">
-                                    {{ $i }}
-                                </a>
-                            </li>
-                        @endfor
-                    </ul>
-                </nav> --}}
-                @endif
-
             </div>
 
-            <div class="poussette bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
+            <div class="category poussette bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
                 @if (isset($message))
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -161,7 +170,7 @@
 
             </div>
 
-            <div class="chambre bloc hidden flex-row gap-[40px] justify-center flex-wrap ">
+            <div class="category chambre bloc hidden flex-row gap-[40px] justify-center flex-wrap ">
                 @if (isset($message))
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -182,7 +191,7 @@
 
             </div>
 
-            <div class="allaitement bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
+            <div class="category allaitement bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
                 @if (isset($message))
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -203,7 +212,30 @@
 
             </div>
 
-            <div class="eveil bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
+            <div class="category toilettes bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
+                @if (isset($message))
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @elseif(isset($toilettes))
+                    @foreach ($toilettes as $toilette)
+                        @if (isset($toilette['img']))
+                            <x-card-product
+                                image="{{ $toilette['img'] ?? '' }}"
+                                marque="{{ $toilette['brand'] ?? '' }}"
+                                price="{{ $toilette['price'] ?? '' }}"
+                                title="{{ $toilette['title'] ?? '' }}"
+                                url="{{$toilette['link'] ?? '' }}"
+                                titleProduct="{{ substr($toilette['title'] ?? '', 0, 20) }}{{ strlen($toilette['title'] ?? '') > 20 ? '...' : '' }}"
+                                />
+                        @endif
+                    @endforeach
+                @endif
+
+
+            </div>
+
+            <div class="category eveil bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
                 @if (isset($message))
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -226,7 +258,7 @@
 
             </div>
 
-            <div class="autres bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
+            <div class="category autres bloc hidden flex-row justify-center gap-[40px] flex-wrap ">
                 @if (isset($message))
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -249,10 +281,8 @@
 
             </div>
 
+
+
         </div>
     </section>
-    <x-footer />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></scrip>
-</body>
-
-</html>
+@endsection

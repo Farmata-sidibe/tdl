@@ -1,4 +1,4 @@
-<div class="bg-[#020817] w-[100%] flex flex-col p-[60px] gap-[20px]">
+<div class="absolute bg-[#020817] w-[100%] flex flex-col p-[60px] gap-[20px] ">
     <div class="flex flex-col gap-[20px] items-center">
         <h3 class="text-[#ffffff] text-[25px] font-bold">La parfaite liste de naissance</h3>
         <p class="text-[#ffffff] text-[0.90em]" >Tout Doux Liste pour les futurs parents qui savent ce qu’ils veulent et ceux qui ne le savent pas encore. <br> Ne perdez plus de temps créez dés maintenant votre liste rapidement et en toutes sécurité</p>

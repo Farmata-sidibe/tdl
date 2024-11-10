@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('liste_id')->nullable();
             $table->string('visitor_name')->NotNullable();
             $table->string('visitor_email')->NotNullable();
+            $table->dateTime('due_date')->NotNullable();
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

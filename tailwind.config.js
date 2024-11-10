@@ -16,6 +16,15 @@ export default {
                 sans: ["Comfortaa", ...defaultTheme.fontFamily.sans],
                 comfortaa: ["Comfortaa", ...defaultTheme.fontFamily.sans],
             },
+            keyframes: {
+                rotate: {
+                  '0%': { transform: 'perspective(1000px) rotateY(0deg)'},
+                  '100%': { transform: 'perspective(1000px) rotateY(360deg)'}
+                }
+              },
+              animation: {
+                rotate: 'rotate 30s linear infinite',
+              },
             colors: {
                 blue: "#1fb6ff",
                 purple: "#7e5bef",

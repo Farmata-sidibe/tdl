@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('content')
-    <x-componentEdit routeListeEdit="{{ route('admin.listes.edit', $liste->id) }}">
+    <div class="p-[60px] flex flex-col gap-[40px] items-start">
+        <a href="{{ route('admin.listes.index') }}" class="flex flex-row items-center gap-[10px]">
+            <x-primary-button>Voir les listes</x-primary-button>
+        </a>
+
         <div class="py-12">
             <div class="max-w-full mx-auto sm:px-6 lg:px-8 space-y-6">
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
@@ -22,6 +26,8 @@
                                         @include('admin.listes.form')
                                     </form>
                                 </div>
+
+                            
                             </div>
                         </div>
                     </div>
@@ -30,7 +36,6 @@
         </div>
 
 
-    </x-componentEdit>
 @endsection
 
 
