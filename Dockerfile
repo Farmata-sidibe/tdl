@@ -36,12 +36,6 @@ COPY . .
 # Installer les dépendances Composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Installer les dépendances npm
-#RUN npm install
-
-# Compiler les assets avec npm
-#RUN npm run build
-
 # Fixer les permissions sur les dossiers critiques
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
@@ -51,11 +45,7 @@ EXPOSE 8000
 EXPOSE 5174
 EXPOSE 5173
 
-# # Copier la configuration supervisord
-# COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# # Lancer supervisord
-# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Copier le script de démarrage
 COPY ./scripts/init.sh /init.sh

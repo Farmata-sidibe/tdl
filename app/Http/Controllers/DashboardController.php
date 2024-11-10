@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Liste;
 use App\Models\Product;
-use Stripe\Stripe;
-use Stripe\Account;
+use App\Models\Participant;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Http;
 
 class DashboardController extends Controller
@@ -16,65 +16,80 @@ class DashboardController extends Controller
     {
         $request->merge(['user_id' => Auth::id()]);
         $user = Auth::user();
-        // $liste = Liste::find($request->all());
+
         $liste = $request->user()->listes()->first();
         $cagnotte = $liste->cagnotte()->first();
+        // Vérifier si l'utilisateur a renseigné son email PayPal
+        $showPaypalPopup = !$user->paypal_email;
 
-
-        $total = 0;
-
-        if ($liste && $liste->products->count() > 0) {
-            foreach ($liste->products as $product) {
-                $total += floatval(str_replace(',', '.', str_replace('€', '', $product['price'])));
-            }
-        }
 
         $total_amount = $cagnotte->total_amount ?? 0;
-        $total_amount = $total;
         $current_amount = $cagnotte->current_amount ?? 0;
         $percentage = $total_amount > 0 ? ($current_amount / $total_amount) * 100 : 0;
 
-        return view('dashboard', compact('user', 'liste', 'total', 'total_amount', 'current_amount','percentage' ));
+        // Récupérer les contributions (participants) et les réservations
+        $participants = Participant::all();;
+        $reservations = Reservation::all();;
+
+        // Fusionner et trier les deux collections par date
+        $historique = $participants->merge($reservations);
+
+        return view('dashboard', compact('user', 'liste', 'total_amount', 'current_amount','percentage','showPaypalPopup', 'historique' ));
     }
 
-    // public function indexListe(Request $request)
-    // {
-    //     $request->merge(['user_id' => Auth::id()]);
-    //     $user = Auth::user();
-    //     // $liste = Liste::find($request->all());
-    //     $liste = $request->user()->listes()->first();
-    //     // dd($liste);
-    //     return view('layouts.navigation', compact('liste', 'user'));
-    // }
+    public function updateTotalAmount(Request $request)
+{
+    // Récupérer l'utilisateur connecté
+    $user = Auth::user();
+    // Récupérer la première liste et la cagnotte de l'utilisateur
+    $liste = $user->listes()->first();
+    $cagnotte = $liste ? $liste->cagnotte()->first() : null;
 
-    // public function createConnectedAccount($user)
-    //     {
-    //         Stripe::setApiKey(config('stripe.secret'));
+    if (!$cagnotte) {
+        return response()->json(['success' => false, 'message' => 'Cagnotte non trouvée.'], 404);
+    }
+    // Mettre à jour le montant total
+    $totalAmount = $request->input('total_amount');
+    $cagnotte->total_amount = $totalAmount;
+    $cagnotte->save();
 
-    //         $account = Account::create([
-    //             'type' => 'express',
-    //             'country' => 'FR',
-    //             'email' => $user->email,
-    //         ]);
+    // Recalculer le pourcentage de progression
+    $currentAmount = $cagnotte->current_amount ?? 0;
+    $percentage = $totalAmount > 0 ? ($currentAmount / $totalAmount) * 100 : 0;
 
-    //         $user->stripe_account_id = $account->id;
-    //         $user->save();
+    return response()->json([
+        'success' => true,
+        'percentage' => $percentage,
+        'total_amount' => $totalAmount
+    ]);
+}
 
-    //         return $account;
-    //     }
+
+    public function savePayPalEmail(Request $request)
+    {
+        $request->validate([
+            'paypal_email' => 'required|email',
+        ]);
+
+        // enregistrement de l'email PayPal dans la base de données
+        $user = Auth::user();
+        $user->paypal_email = $request->input('paypal_email');
+        $user->save();
+
+        return redirect()->back()->with('success', 'Votre email PayPal a été enregistré.');
+    }
 
     public function addProductWish(Request $request, $title)
     {
         $user = Auth::user();
         $liste = Liste::firstOrCreate(['user_id' => $user->id]);
-
         // Check if the product is already in the list
         if ($liste->products()->wherePivot('title', $title)->exists()) {
             return redirect()->route('dashboard')->with('error', 'Le produit est déjà dans la liste de naissance');
         }
 
         // Fetch product details from the API
-        $response = Http::get(env('API_URL'), ['name' => $title]);
+        $response = Http::get(env('API_BASE_URL'), ['name' => $title]);
         if ($response->successful()) {
             $data = $response->json();
             $productData = collect($data['data']['others'])

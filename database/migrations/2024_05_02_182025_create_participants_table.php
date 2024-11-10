@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name')->NotNullable();
             $table->string('email')->NotNullable();
             $table->decimal('amount', 8, 2)->NotNullable();
-            $table->string('date_contribution')->NotNullable();
+            $table->decimal('commission', 8, 2)->default(0);
+            $table->dateTime('date_contribution')->NotNullable();
+            $table->enum('status', ['pending', 'paid'])->default('pending');
             // $table->foreignId('cagnotte_id')->constrained()->onDelete('cascade');
             $table->foreignIdFor(\App\Models\Product::class)->nullable();
             $table->foreignIdFor(\App\Models\Cagnotte::class)->nullable();

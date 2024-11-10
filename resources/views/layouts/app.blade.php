@@ -8,7 +8,9 @@
     <link rel="icon" type="image/svg" sizes="32x32" href="{{ asset('icon-tdl.svg') }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>{{ config('app.name', 'TDL') }}</title>
+    {{-- <title>{{ config('app.name', 'Tout doux liste') }}</title> --}}
+    <title>{{ $title ?? 'Tout Doux Liste' }}</title>
+    <meta name="description" content="{{ $metaDescription ?? 'Créez et partagez votre liste de naissance avec simplicité ! Permettez à vos proches de contribuer directement via PayPal, sans complication. Découvrez une sélection de produits bébés et simplifiez la préparation de l’arrivée de votre enfant.' }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,25 +19,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <!-- Scripts -->
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../path/to/flowbite/dist/datepicker.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
-    @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/script.js', 'resources/scss/navUser.scss', 'resources/scss/product.scss'])
+    {{-- @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/script.js','resources/js/dashboard.js', 'resources/scss/navUser.scss', 'resources/scss/product.scss', 'resources/css/app.css']) --}}
+
+    @vite('resources/scss/navUser.scss')
+    @vite('resources/scss/product.scss')
+    @vite('resources/scss/app.scss')
+    @vite('resources/css/app.css')
 
 </head>
 
 <body class="font-comfortaa antialiased">
-    @if (Route::has('login'))
-
-                @auth
-                <x-navbar/>
-                @include('layouts.navigation')
-                @else
-                <x-navbar/>
-                @endauth
-
-        @endif
-    <div class="min-h-screen bg-[#F6F3EC]">
+    @include('layouts.navigation')
+    <div class="mt-[6%] min-h-screen">
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -54,15 +49,16 @@
 
         <!-- Page Content -->
         <main>
-            {{ $slot }}
+            @yield('content')
         </main>
     </div>
-
     <x-footer/>
+    {{ CookieConsent::getCookieConsentPopup() }}
+
         @vite('resources/js/app.js')
         @vite('resources/js/dashboard.js')
+        @vite('resources/js/script.js')
 
-        <script src="https://js.stripe.com/v3/"></script>
         <script>
             // copy link slug to liste
 
@@ -78,6 +74,10 @@
             }
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    </body>
 
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../path/to/flowbite/dist/datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+    </body>
     </html>

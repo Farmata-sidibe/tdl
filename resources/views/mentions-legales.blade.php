@@ -1,5 +1,6 @@
-<x-app-layout >
-    <div class="flex flex-col justify-center items-center">
+@extends('layouts.app')
+@section('content')
+<div class="p-5 border rounded text-gray-500 flex justify-center items-center">
         <div class="bg-[#ffffff] rounded-xl shadow-lg w-[60vw] px-[40px] py-[50px] mt-[50px] mb-[50px]">
             <H1 class="text-rose text-center mb-[10px] text-[1.8em]" >Mentions Légales</H1>
             <p>Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site tout doux liste l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.
@@ -31,7 +32,7 @@
                 <h2 class="text-[1.3em] font-bold">Nous contacter </h2>
                 <p>
                     Par téléphone : +33664405692 <br>
-                    Par email : farmata98hadem@gmail.com <br>
+                    Par email : dpo@toutdouxliste.fr <br>
                     Par courrier : 31 avenue jules valles 95490 Vauréal
 
                 </p>
@@ -40,12 +41,11 @@
             <div class="mt-[20px]">
                 <h2 class="text-[1.3em] font-bold">Données personnelles </h2>
                 <p>
-                    Le traitement de vos données à caractère personnel est régi par notre Charte du respect de la vie privée, disponible depuis la section "Charte de Protection des Données Personnelles", conformément au Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016 («RGPD»).
-
+                    Le traitement de vos données à caractère personnel est régi par notre Charte du respect de la vie privée, disponible depuis la section <a href="/politique-confidentialite">"Politique de confidentialité"</a> , conformément au Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016 («RGPD»).
                 </p>
             </div>
 
         </div>
     </div>
 
-</x-app-layout>
+@endsection

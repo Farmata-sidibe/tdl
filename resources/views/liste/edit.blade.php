@@ -1,4 +1,4 @@
-<x-componentEdit routeListeEdit="{{ route('listes.edit', $liste->id) }}">
+<x-componentEdit routeListeEdit="{{ route('liste.edit', $liste->id) }}">
     <div class="py-12">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
@@ -8,7 +8,7 @@
                             <h1 class="text-base font-semibold leading-6 text-gray-900">Ma {{ __('Liste') }} de naissance</h1>
 
                         </div>
-                        
+
                     </div>
 
                     <div class="flow-root">

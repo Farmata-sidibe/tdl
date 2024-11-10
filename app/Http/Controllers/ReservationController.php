@@ -27,6 +27,7 @@ class ReservationController extends Controller
             'liste_id' => $request->liste_id,
             'visitor_name' => $request->visitor_name,
             'visitor_email' => $request->visitor_email,
+            'due_date' => now(),
         ]);
 
         // Marquer le produit comme réservé

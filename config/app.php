@@ -172,6 +172,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
+        App\Providers\PayPalServiceProvider::class,
     ])->toArray(),
 
     /*

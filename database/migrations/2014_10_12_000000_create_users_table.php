@@ -17,12 +17,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('paypal_email')->nullable();
             $table->integer('phone')->nullable();
-            $table->text('avatar')->nullable();
+            $table->string('profile_image')->nullable()->default('default-profile.jpg');
+            $table->string('cover_image')->nullable()->default('default-cover.jpg');
             $table->string('country')->nullable();
             $table->text('adress')->nullable();
             $table->integer('code_postal')->nullable();
             $table->string('ville')->nullable();
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

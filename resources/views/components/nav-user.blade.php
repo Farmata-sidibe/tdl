@@ -1,7 +1,8 @@
 <nav class="nav_user  w-[100%] h-[59px]   mx-auto">
     <div class="containe_nav_user flex justify-between items-center px-[50px] pt-[10px]">
         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-            <img src="{{asset('img/jonathan-borba-RWgE9_lKj_Y-unsplash.jpg')}}" class="w-[40px] h-[40px] object-cover rounded-[50%]" alt="pp user">
+            {{-- <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="image de profile"> --}}
+            <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" class="w-[40px] h-[40px] object-cover rounded-[50%]" alt="pp user">
         </x-nav-link>
         <div class="link bg-[#fff] h-[40px] px-[15px] rounded-[30px] flex flex-row justify-centen items-center gap-[30px]">
             <a href="#" class="flex flex-row items-center gap-[10px] text-[#505050]">

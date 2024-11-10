@@ -1,139 +1,103 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('content')
 
-    <title>TDL</title>
-    <link rel="icon" type="image/svg" sizes="32x32" href="{{ asset('icon-tdl.svg') }}">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-
-
-    <!-- Styles -->
-
-    <!-- Script -->
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-
-    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
-</head>
-
-<body>
-
-            {{-- <div class="">
-                @if (Route::has('login'))
-                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-
-                        @auth
-                            <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 light:text-gray-400 light:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                        @else
-                            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 light:text-gray-400 light:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Connexion</a>
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 light:text-gray-400 light:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
-            </div>
-       --}}
-    <x-navbar/>
-
-    <header class="container_header">
-        <div class="header_text">
-            <h1 class="text-black">Créez et partagez <br> votre <span class="text-rose">liste de <br> naissance</span> </h1>
-            <p class="text-black">Des envies comblées pour une naissance inoubliable</p>
-            <div class="group_btn">
-                {{-- <button class="bg-[#FF91B2] text-white px-7 py-2 rounded-[15px] hover:bg-[#9CC4B9]">Créer ma liste de
-                    naissance</button> --}}
-                <x-btn-style>Créer ma liste de naissance</x-btn-style>
-                <x-btn-style2>Un exemple</x-btn-style2>
-
-
-            </div>
-
-
-        </div>
-        <div class="header_img">
-            <img src="{{ asset('img/circle header.png') }}" alt="img header">
-
-        </div>
-
-    </header>
-
-    <section class="mySection">
-
-        <div class="section_one">
-            <div class="cards_img">
-                <img src="{{ asset('img/nihal-karkala-M5aSbOXeDyo-unsplash.jpg') }}" class="imgFirst" alt="img kids">
-
-                <div class="imgBottom">
-                    <img src="{{ asset('img/kids-me-germany-Zzgmde4_lYU-unsplash.jpg') }}" alt="img peluche">
-                    <img src="{{ asset('img/taisiia-shestopal-k1tgnIUZ_CM-unsplash.jpg') }}" alt="img jogging kids">
+    <header class=" bg-white relative overflow-hidden">
+    <div class="bg-white flex relative z-20 items-center overflow-hidden">
+        <div class="container mx-auto px-6 flex relative py-16">
+            <div class="sm:w-2/3 lg:w-4/5 flex flex-col justify-center relative z-20">
+                <span class="w-20 h-2 bg-rose mb-12">
+                </span>
+                <h1
+                    class=" uppercase text-6xl sm:text-8xl font-bold flex flex-col items-start leading-none text-gray-800">
+                    Créez,
+                    <span class="text-5xl sm:text-7xl ">
+                        Partagez
+                    </span>
+                </h1>
+                <p class="text-sm sm:text-base text-gray-700">
+                    votre liste de naissance. Des envies comblées pour une naissance inoubliable
+                </p>
+                <div class="flex mt-8">
+                    <a href="/register"
+                        class=" font-semibold py-2 px-4 rounded-lg bg-rose border-2 border-transparent text-white text-md mr-4 hover:bg-rose">
+                        Créez ma liste
+                    </a>
+                    <a href="#"
+                        class="font-semibold py-2 px-4 rounded-lg bg-transparent border-2 border-rose text-rose hover:bg-rose hover:text-white text-md">
+                        Un exemple
+                    </a>
                 </div>
-
-
             </div>
-
-            <div class="card_text">
-                <h2>Faites votre liste de souhait</h2>
-                <p>Cherchez et ajoutez les articles bébé dans le <br> boutique de votre choix</p>
+            <div class="hidden lg:block lg:w-3/5 relative">
+                <img src="{{ asset('img/circle header.png') }}" class="max-w-xs md:max-w-sm m-auto"/>
             </div>
+        </div>
+    </div>
+</header>
 
-
+    <section class="bg-beige ">
+        <div class="max-w-screen-xl 2xl:max-w-screen-3xl px-8 md:px-12 mx-auto py-16 lg:py-32 space-y-24 flex flex-col justify-center">
+         <div class="flex flex-col sm:flex-row mx-auto">
+          <!--- Starts component -->
+          <a href="#_">
+            <img src="https://images.unsplash.com/photo-1615766553246-9147b6d50e90?q=80&amp;w=2670&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl  rotate-6 hover:rotate-0 duration-500 hover:-translate-y-12 h-full w-full object-cover hover:scale-150 transform origin-bottom" alt="#_">
+          </a>
+          <a href="#_">
+            <img src="https://images.pexels.com/photos/27661864/pexels-photo-27661864/free-photo-of-mignon-jouer-colore-creativite.jpeg?q=80&amp;w=2672&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D " class="rounded-xl  -rotate-12 hover:rotate-0 duration-500 hover:-translate-y-12 h-full w-full object-cover hover:scale-150 transform origin-bottom" alt="#_">
+            </a>
+            <a href="#_">
+                <img src="https://images.pexels.com/photos/4964482/pexels-photo-4964482.jpeg?q=80&amp;w=2670&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl  rotate-6 hover:rotate-0 duration-500 hover:-translate-y-12 h-full w-full object-cover hover:scale-150 transform origin-bottom" alt="#_">
+            </a>
+            <a href="#_">
+                <img src="https://images.pexels.com/photos/9214902/pexels-photo-9214902.jpeg?q=80&amp;w=2574&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl  -rotate-12 hover:rotate-0 duration-500 hover:-translate-y-12 h-full w-full object-cover hover:scale-150 transform origin-bottom" alt="#_">
+            </a>
+          <!--- Ends component -->
+         </div>
         </div>
     </section>
 
     <section id="one" class="section_two">
-        <h2>Comment ça marche ?</h2>
-        <p>Toutes vos envies sur une seule liste tout doux </p>
-        <div class="content_two flex flex-row flex-wrap justify-between p-[60px]">
+        <h2 class="text-center text-[2em] lg:text-[3em] mt-10 font-bold">Comment ça marche ?</h2>
+        <p class="text-center">Toutes vos envies sur une seule liste tout doux </p>
+        <div class="content_two flex flex-row flex-wrap gap-[20px] justify-between p-[60px]">
 
             <x-card-style1 color="#F3C6A7" >
 
-                <h3 class="text-[20px] font-bold leading-[3rem]">Créez votre liste</h3>
-
-                <p class="text-start text-[13px]">
-                    En un clic vous avez  accès tous les options mis en place pour vous permettre de <span class="text-[#FF91B2]">créez vos listes</span>.
-                    <br> <br>
-                    Rendez votre liste de naissance <span class="text-[#FF91B2]">unique</span>  en personnalisant le thème, les couleurs, la photo de couverture, votre photo de profil
-                </p>
-                <span class="hover:bg-[#020817]  p-[8px] rounded-lg flex items-center">
-                    @svg('TaskList', ['width'=>30, 'height'=>30, 'fill'=>'#ff91b2'])
+                <span class="grid h-20 w-20 place-items-center rounded-full bg-[#F3C6A7] transition-all duration-300 group-hover:bg-[#F3C6A7]">
+                    @svg('TaskList', ['width'=>30, 'height'=>30, 'fill'=>'#fff'])
                 </span>
+                <div
+                    class="space-y-6 pt-5 text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                    <p class="text-justify">En un clic vous avez  accès tous les options mis en place pour vous permettre de <span class="font-bold">créez vos listes</span>.
+                        Rendez votre liste de naissance <span class="font-bold">unique</span>  en personnalisant le thème, les couleurs, la photo de couverture, votre photo de profil.</p>
+                </div>
             </x-card-style1>
 
             <x-card-style1 color="#9cc4b9">
 
-                <h3 class="text-[20px] font-bold leading-[3rem]">Ajoutez vos envies vous</h3>
-
-                <p class="text-start text-[13px]">
-                    Ajoutez des produits des <span class="text-[#FF91B2]">boutiques de votre choix</span>. Vous avez une larges choix sur la marque et <span class="text-[#FF91B2]">vos envies</span>  alors profitez en.
-                </p>
-
-                <span class="bg-[#9cc4b9] p-[8px] rounded-lg flex items-center">
-                    @svg('wishList', ['width'=>30, 'height'=>30])
+                <span class="grid h-20 w-20 place-items-center rounded-full bg-[#9cc4b9] transition-all duration-300 group-hover:bg-[#9cc4b9]">
+                    @svg('wishList', ['width'=>30, 'height'=>30, 'fill'=>'#fff'])
                 </span>
+                <div
+                    class="space-y-6 pt-5 text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                    <p class="text-justify">Ajoutez des produits des <span class="font-bold">boutiques de votre choix</span>. Vous avez une larges choix sur la marque et <span class="font-bold">vos envies</span>  alors profitez en.</p>
+                </div>
             </x-card-style1>
 
             <x-card-style1 color="#FF91B2">
 
-                <h3 class="text-[20px] font-bold leading-[3rem]">Partagez votre liste</h3>
-
-                <p class="text-start text-[13px]">
-                Puis <span class="text-[#FF91B2]">partagez la à votre entourage</span>, avec la <span class="text-[#FF91B2]">cagnotte</span>  en ligne mis en place.
-                <br> <br> Vos proches peuvent participer facilement sans quitter votre liste à l'achat
-                des produits et <span class="text-[#FF91B2]">financer</span>  à plusieurs les gros achats. C'est simple pour eux comme pour vous.
-                </p>
-                <span class="bg-[#FF91B2] p-[8px] rounded-lg flex items-center">
-                    @svg('share', ['width'=>30, 'height'=>30])
+                <span class="grid h-20 w-20 place-items-center rounded-full bg-[#FF91B2] transition-all duration-300 group-hover:bg-[#FF91B2]">
+                    @svg('share', ['width'=>30, 'height'=>30, 'fill'=>'#fff'])
                 </span>
+                <div
+                    class="space-y-6 pt-5 text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                    <p class="text-justify">
+                        Puis <span class="font-bold">partagez la à votre entourage</span>, avec la <span class="font-bold">cagnotte</span>  en ligne mis en place.
+                        Vos proches peuvent participer facilement sans quitter votre liste à l'achat
+                        des produits et <span class="font-bold">financer</span>  à plusieurs les gros achats. C'est simple pour eux comme pour vous.
+                    </p>
+                </div>
             </x-card-style1>
 
 
@@ -141,86 +105,146 @@
         </div>
     </section>
 
-    <div class="section_three relative">
-        <div class="barr w-[100px] h-[807px] bg-[#FF91B2] absolute origin-center rotate-45 top-[-29%] left-[15%]"></div>
+    <section>
+        <div class="section_three sticky top-0 h-[100vh] z-1">
+            <div class="barr w-[100px] h-[960px] bg-[#FF91B2] absolute origin-center rotate-45 top-[-32%] left-[15%]"></div>
 
-        <div class="content_three flex flex-row pl-[60px] pr-[60px] justify-between items-center ">
-            <div class="text  z-[1]">
-                <h2 class="mb-[20px]">Une liste intuitive pour tous</h2>
-                <p>Chacun de nous s’est une fois posé ces questions, que vais je acheter pour  <strong>l’arriver</strong> de mon bébé? quels <strong>marques</strong>  est le mieux? est ce que mon <strong>budget</strong>  me permet de faire tous ces achats? Et <strong> si j’ai des produits en doublons?</strong> <br> <br>
+            <div class="flex flex-col-reverse lg:flex-row lg:px-[60px] px-5  justify-between items-center ">
+                <div class="text  z-[1]">
+                    <h2 class="mb-[20px] text-[2em] lg:text-[3em] mt-10 font-bold">Une liste intuitive pour tous</h2>
+                    <p>Chacun de nous s’est une fois posé ces questions, que vais je acheter pour  <strong>l’arriver</strong> de mon bébé? quels <strong>marques</strong>  est le mieux? est ce que mon <strong>budget</strong>  me permet de faire tous ces achats? Et <strong> si j’ai des produits en doublons?</strong> <br> <br>
 
-                    avec <strong> Tout Doux Liste</strong> vous n’aurez plus à vous posez ces questions, c’est le site qui vous <strong> permet d’organiser l’arriver de votre futur boutchou en regroupant vos envies sur une seule liste </strong> , avec les marques de votre choix. <br> <br>
-                    Grâce à l’option <strong> cagnotte en ligne </strong> , vos proches pourront y participer soit sur l’achat d’un article ou en participant à la cagnotte. Ceci les permettra de ne plus se prendre la tête sur quel cadeau acheter et plus de risque de doublon.
+                        avec <strong> Tout Doux Liste</strong> vous n’aurez plus à vous posez ces questions, c’est le site qui vous <strong> permet d’organiser l’arriver de votre futur boutchou en regroupant vos envies sur une seule liste </strong> , avec les marques de votre choix. <br> <br>
+                        Grâce à l’option <strong> cagnotte en ligne </strong> , vos proches pourront y participer soit sur l’achat d’un article ou en participant à la cagnotte. Ceci les permettra de ne plus se prendre la tête sur quel cadeau acheter et plus de risque de doublon.
 
-                    Ce site est fait pour vous les parents afin de vous accompagner dans cette nouvelle aventure.</p>
-            </div>
+                        Ce site est fait pour vous les parents afin de vous accompagner dans cette nouvelle aventure.</p>
+                </div>
 
-            <img src="{{asset("img/jigsaw-puzzle.png")}}" class="w-[35em]" alt="">
-        </div>
-
-
-    </div>
-
-    <div class="section_four pt-[60px] pb-[60px]">
-        <h2 class="text-center">Comment fonctionne la cagnotte</h2>
-
-        <div class=" content_four flex flex-row items-center pr-[60px]">
-
-                @svg("cagnotte", ['width'=>'85em'])
-
-
-
-            <div class=" text_four flex flex-col items-start gap-[40px]">
-                <p>Vos proche participe facilement à votre liste de naissance par carte bancaire ou <span class="text-[#FF91B2]">PayPal</span> vous permettant d’augmenter les contributions que vous recevez. <br> <br>
-
-                    Vous restez maître de vos achats en disposant de l’argent comme vous le souhaitez.
-
-                    Le retrait de la cagnotte se fait par<span class="text-[#FF91B2]"> virement</span> sur votre compte en banque (gratuitement) et autant de fois que vous le souhaitez. <br> <br>
-
-                    Avec la cagnotte de naissance, fini les distributions quasi quotidiennes de
-                    paquets à votre domicile ou le stress de ne pas savoir si l'une de vos envies a vraiment été achetée.</p>
-
-                <x-btn-style>Créer ma liste maintenant</x-btn-style>
-
-            </div>
-        </div>
-
-    </div>
-
-    <div class="section_five flex flex-row p-[60px] gap-[20px] flex-wrap">
-        <div class="flex flex-col gap-[20px]">
-            <h3 class="text-[#9cc4b9] text-[25px] font-bold">L’essentiel pour votre <br> <span class="text-[#FF91B2]">futur bébé</span> en un seul <br> endroit</h3>
-            <p>Composer une liste c'est aussi l'assurance de ne <br> pas se voir offrir des cadeaux inutiles.</p>
-        </div>
-
-            <div class=" flex flex-row justify-center gap-[28px] flex-wrap">
-                <img src="{{asset('img/taisiia-shestopal-8IIZAnpRX30-unsplash.jpg')}}" alt="" class="w-[220px] h-[250px] rounded-[20px] object-cover">
-                <img src="{{asset('img/olimpia-campean-H3DAAAtF670-unsplash.jpg')}}" alt="" class="w-[220px] h-[250px] rounded-[20px] object-cover">
-                <img src="{{asset('img/taisiia-shestopal-4CBQolocROI-unsplash.jpg')}}" alt="" class="w-[220px] h-[250px] rounded-[20px] object-cover">
-
+                <div class="">
+                    <img src="{{asset("img/jigsaw-puzzle.png")}}" class=" w-[50vw] lg:w-[100vw]" alt="">
+                </div>
             </div>
 
 
+        </div>
 
-    </div>
+        <div class="z-2 section_four pt-5 lg:pt-[60px] lg:pb-[60px] sticky top-0 h-[100vh] bg-white justify-between items-center">
+            <h2 class="text-center text-[2em] lg:text-[3em] mt-10 font-bold">Comment fonctionne la cagnotte</h2>
+
+            <div class="flex flex-col lg:flex-row items-center lg:pr-[60px] justify-center">
+                <div class="hidden md:block lg:block">
+                    @svg("cagnotte", ['width'=>'50vw'])
+                </div>
+
+                <div class=" flex flex-col items-start gap-[40px] px-5 w-full lg:w-3/4">
+                    <p>Vos proche participe facilement à votre liste de naissance par carte bancaire ou <span class="text-[#FF91B2]">PayPal</span> vous permettant d’augmenter les contributions que vous recevez. <br> <br>
+
+                        Vous restez maître de vos achats en disposant de l’argent comme vous le souhaitez.
+
+                        Le retrait de la cagnotte se fait par<span class="text-[#FF91B2]"> virement</span> sur votre compte en banque (gratuitement) et autant de fois que vous le souhaitez. <br> <br>
+
+                        Avec la cagnotte de naissance, fini les distributions quasi quotidiennes de
+                        paquets à votre domicile ou le stress de ne pas savoir si l'une de vos envies a vraiment été achetée.</p>
+
+                    <x-btn-style>Créer ma liste maintenant</x-btn-style>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- z-3 section_five flex flex-col lg:flex-row p-[60px] gap-40 lg:gap-[20px] justify-between md:justify-between lg:justify-between flex-wrap sticky top-0 h-[100vh] bg-beige -->
+        <div class="z-3 section_five flex flex-col lg:flex-row p-[60px] justify-between md:justify-between lg:justify-between flex-wrap sticky top-0 h-[100vh] bg-beige">
+            <div class="flex flex-col gap-[20px]">
+                <h3 class="text-[#9cc4b9] text-[1.8em] lg:text-[2em] mt-10 font-bold">L’essentiel pour votre <br> <span class="text-[#FF91B2]">futur bébé</span> en un seul <br> endroit</h3>
+                <p>Composer une liste c'est aussi l'assurance de ne <br> pas se voir offrir des cadeaux inutiles.</p>
+            </div>
+
+            <div class="container3D">
+                <input type="radio" name="slide" id="c1" checked>
+                <label for="c1" class="card3D bg-[url('{{asset('img/anime5.jpg')}}')]">
+                    <div class="row">
+                        <div class="icon">1</div>
+                        <div class="description">
+                            <h4>Winter</h4>
+                            <p>Winter has so much to offer -
+                             creative activities</p>
+                        </div>
+                    </div>
+                </label>
+                <input type="radio" name="slide" id="c2" >
+                <label for="c2" class="card3D bg-[url('{{asset('img/anime1.jpg')}}')]">
+                    <div class="row">
+                        <div class="icon">2</div>
+                        <div class="description">
+                            <h4>Digital Technology</h4>
+                            <p>Gets better every day -
+                             stay tuned</p>
+                        </div>
+                    </div>
+                </label>
+                <input type="radio" name="slide" id="c3" >
+                <label for="c3" class="card3D bg-[url('{{asset('img/anime3.jpg')}}')]">
+                    <div class="row">
+                        <div class="icon">3</div>
+                        <div class="description">
+                            <h4>Globalization</h4>
+                            <p>Help people all over the world</p>
+                        </div>
+                    </div>
+                </label>
+                <input type="radio" name="slide" id="c4" >
+                <label for="c4" class="card3D bg-[url('{{asset('img/anime8.jpg')}}')]">
+                    <div class="row">
+                        <div class="icon">4</div>
+                        <div class="description">
+                            <h4>New technologies</h4>
+                            <p>Space engineering becomes
+                             more and more advanced</p>
+                        </div>
+                    </div>
+                </label>
+                <input type="radio" name="slide" id="c5" >
+                <label for="c5" class="card3D bg-[url('{{asset('img/anime6.jpg')}}')]">
+                    <div class="row">
+                        <div class="icon">5</div>
+                        <div class="description">
+                            <h4>New technologies</h4>
+                            <p>Space engineering becomes
+                             more and more advanced</p>
+                        </div>
+                    </div>
+                </label>
+                <input type="radio" name="slide" id="c6" >
+                <label for="c6" class="card3D bg-[url('{{asset('img/anime2.jpg')}}')]">
+                    <div class="row">
+                        <div class="icon">6</div>
+                        <div class="description">
+                            <h4>New technologies</h4>
+                            <p>Space engineering becomes
+                             more and more advanced</p>
+                        </div>
+                    </div>
+                </label>
+                <input type="radio" name="slide" id="c7" >
+                <label for="c7" class="card3D bg-[url('{{asset('img/anime7.jpg')}}')]">
+                    <div class="row">
+                        <div class="icon">7</div>
+                        <div class="description">
+                            <h4>New technologies</h4>
+                            <p>Space engineering becomes
+                             more and more advanced</p>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+
+    <div class="bg-White h-[20vh] z-4 w-full"></div>
+    </section>
 
 
 
 
 
-    <x-footer/>
-
-
-    <script>
-        const navLinks = document.querySelector('.nav-links');
-
-        function onToggleMenu(e) {
-            e.name = e.name === 'menu' ? 'close' : 'menu';
-            navLinks.classList.toggle('top-[9%]');
-        }
-    </script>
-
-
-</body>
-
-</html>
+@endsection

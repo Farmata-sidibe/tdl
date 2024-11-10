@@ -12,6 +12,7 @@ class Participant extends Model
         'name',
         'email',
         'amount',
+        'commission',
         'date_contribution',
         'product_id',
         'cagnotte_id',

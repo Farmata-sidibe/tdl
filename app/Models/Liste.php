@@ -15,8 +15,6 @@ class Liste extends Model
     protected $fillable = [
         'title',
         'uuid',
-        'stripe_account_id',
-        'identity_verified',
         'description',
         'dateBirth',
         'partner',

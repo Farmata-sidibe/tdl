@@ -5,10 +5,10 @@ window.Alpine = Alpine;
 Alpine.start();
 
 let btnEnvie = document.getElementById("envies");
-let btnParticipant = document.getElementById("participants");
+let btnParticipant = document.getElementById("donateurs");
 
 let blocEnvie = document.querySelector(".envies");
-let blocParticipant = document.querySelector(".participants");
+let blocParticipant = document.querySelector(".donateurs");
 
 btnEnvie.onclick = function () {
     console.log('click')

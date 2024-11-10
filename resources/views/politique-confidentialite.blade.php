@@ -1,15 +1,19 @@
-<x-app-layout >
-    <div class="flex flex-col justify-center items-center">
+@extends('layouts.app')
+@section('content')
+    <div class="p-5 border rounded text-gray-500 flex justify-center items-center">
         <div class="bg-[#ffffff] rounded-xl shadow-lg w-[60vw] px-[40px] py-[50px] mt-[50px]">
             <H1 class="text-rose text-center mb-[10px] text-[1.8em]" >Politique de confidentialité</H1>
             <h2 class="text-[1.3em] font-bold text-vertPoudre">Tout Doux Liste</h2>
-            <span class="text-[1em] font-medium">Dernière mise à jour : 23/08/2024</span>
+            <span class="text-[1em] font-medium">Dernière mise à jour : 6/11/2024</span>
             <p>
                 Chez Tout Doux Liste, la protection de votre vie privée est une priorité. Cette politique de confidentialité décrit comment nous collectons, utilisons, partageons et protégeons vos informations personnelles lorsque vous utilisez notre site de liste de naissance.
             </p>
+            <br>
+            <hr>
+            <br>
             <p>
                 Cette politique complète les mentions légales et les Conditions Générales d’Utilisation consultables à l’adresse suivante :
-                <a href="/mentions-legales">mentions légales</a>
+                <a href="/mentions-legales" class="text-vertPoudre">mentions légales</a>
             </p>
 
             <div class="mt-[20px]">
@@ -43,8 +47,8 @@
                     Les données personnelles collectées dans le cadre de notre activité sont les suivantes :
                 </p>
                 <ul>
-                    <li class="list-disc"><span class="font-medium">Information de contact :</span> Nom Complet, adresse e-mail, téléphone, adresse complet</li>
-                    <li class="list-disc"><span class="font-medium">Information sur la liste de naissance :</span>Titre de la liste, la date du terme, nom du conjoint, description, vérification d'identité, produits ajoutés, préférences et informations connexes.</li>
+                    <li class="list-disc"><span class="font-medium">Information de contact :</span> Nom Complet, adresse e-mail, téléphone, adresse complete</li>
+                    <li class="list-disc"><span class="font-medium">Information sur la liste de naissance :</span>Titre de la liste, la date du terme, nom du conjoint, description, produits ajoutés, préférences et informations connexes.</li>
                     <li class="list-disc"><span class="font-medium">Données de navigation : </span>Adresse IP, type de navigateur, pages visitées, temps passées sur le site, etc</li>
                     <li class="list-disc"><span class="font-medium">Cookies : </span>Pour améliorer votre expérience, nous utilisons des cookies pour mémoriser vos préférences et suivre votre utilisation du site.</li>
                 </ul>
@@ -79,11 +83,11 @@
 
                 </ul>
                 <p>
-                    Pour exercer vos droits, veuillez adresser votre courrier par mail à farmata98hadem@gmail.com.
+                    Pour exercer vos droits, veuillez adresser votre courrier par mail à dpo@toutdouxliste.fr
 
                     Afin que le responsable du traitement des données puisse faire droit à sa demande, l’utilisateur peut être tenu de lui communiquer certaines informations telles que : ses noms et prénoms, son adresse e-mail ainsi que son numéro de compte, d’espace personnel ou d’abonné.
 
-                    Consultez le site cnil.fr pour plus d’informations sur vos droits.
+                    Consultez le site <a href="https://www.cnil.fr/fr">cnil.fr</a> pour plus d’informations sur vos droits.
                 </p>
             </div>
 
@@ -97,13 +101,7 @@
             <div class="mt-[20px]">
                 <h2 class="text-[1.3em] font-bold">ARTICLE 6 : CONDITIONS DE MODIFICATION DE LA POLITIQUE DE CONFIDENTIALITÉ</h2>
                 <p>
-                    L’éditeur du site Farmata SIDIBE se réserve le droit de pouvoir modifier la présente Politique à tout moment afin d’assurer aux utilisateurs du site sa conformité avec le droit en vigueur.
-
-                    Les éventuelles modifications ne sauraient avoir d’incidence sur les achats antérieurement effectués sur le site, lesquels restent soumis à la Politique en vigueur au moment de l’achat et telle qu’acceptée par l’utilisateur lors de la validation de l’achat.
-
-                    L’utilisateur est invité à prendre connaissance de cette Politique à chaque fois qu’il utilise nos services, sans qu’il soit nécessaire de l’en prévenir formellement.
-
-                    La présente politique, éditée le 23/08/2024, a été mise à jour le 23/08/2024.
+                    L’éditeur du site Farmata SIDIBE se réserve le droit de pouvoir modifier la présente Politique à tout moment afin d’assurer aux utilisateurs du site sa conformité avec le droit en vigueur. Les éventuelles modifications ne sauraient avoir d’incidence sur les achats antérieurement effectués sur le site, lesquels restent soumis à la Politique en vigueur au moment de l’achat et telle qu’acceptée par l’utilisateur lors de la validation de l’achat. L’utilisateur est invité à prendre connaissance de cette Politique à chaque fois qu’il utilise nos services, sans qu’il soit nécessaire de l’en prévenir formellement.
                 </p>
             </div>
 
@@ -112,7 +110,7 @@
                 <p>
                     Pour toute question concernant cette politique de confidentialité ou pour exercer vos droits, veuillez nous contacter à : <br>
 
-                    E-mail : farmata98hadem@gmail.com <br>
+                    E-mail : dpo@toutdouxliste.fr <br>
                     <span class="font-medium text-rose">Merci d'utiliser Tout Doux Liste. Nous nous engageons à protéger votre vie privée.</span>
                 </p>
             </div>
@@ -120,4 +118,4 @@
         </div>
     </div>
 
-</x-app-layout>
+@endsection

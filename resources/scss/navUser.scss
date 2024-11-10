@@ -48,49 +48,54 @@
         }
     }
 
-    .header{
+    .nav_user {
+        background: transparent;
+        .containe_nav_user{
+            display: none;
+        }
+        .containe_responsive{
+            display: flex;
+        }
+    }
 
-        background-image: linear-gradient(rgba(0, 0, 0, 0.326), #472f368e
+    .header_product{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), #472f368e
         ), url('../image/juan-encalada-_ENQdIjyPcA-unsplash.jpg');
-        height: 100vh;
+        height: 60vh;
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
-
-        .nav_user {
-            background: transparent;
-            .containe_nav_user{
-                display: none;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 137px;
+        .item_img{
+            display: none;
+        }
+        .item_text{
+            h1{
+                font-size: 2.1em;
+                font-weight: 900;
+                color: aliceblue;
             }
-            .containe_responsive{
-                display: flex;
+            h2{
+                font-size: 1.8em;
+                font-weight: 900;
+            }
+            p{
+                font-size: 16px;
+                color: aliceblue;
+                text-align: center;
+
             }
         }
-
-        .header_product{
-            background: transparent;
-            padding-top: 137px;
-            .item_img{
-                display: none;
-            }
-            .item_text{
-                h1{
-                    font-size: 2em;
-                    color: aliceblue;
-                }
-                h2{
-                    font-size: 1.5em;
-                }
-                p{
-                    font-size: 13px;
-                    color: aliceblue;
-
-                }
-            }
-        }
-
-
     }
+    .section_link{
+        padding: 20px 20px !important;
+        div{
+            padding: 20px 20px;
+        }
+    }
+
 }
 
 @media screen and (max-width: 680.99px){

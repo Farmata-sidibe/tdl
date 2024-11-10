@@ -1,13 +1,40 @@
-
-<div class="flex items-center justify-center w-full">
-    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 light:hover:bg-bray-800 light:bg-gray-700 hover:bg-gray-100 light:border-gray-600 light:hover:border-gray-500 light:hover:bg-gray-600">
-        <div class="flex flex-col items-center justify-center p-5">
-            <svg class="w-8 h-8 mb-4 text-gray-500 light:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-            </svg>
-            <p class="mb-2 text-sm text-gray-500 light:text-gray-400"><span class="font-semibold">Justificatif d'identité</span> {{$face}}</p>
-            <p class="text-xs text-gray-500 light:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-        </div>
-        <input id="dropzone-file" type="file" class="hidden" required />
-    </label>
-</div>
+<label
+  class="flex  cursor-pointer appearance-none justify-center rounded-md border border-dashed border-gray-300 bg-white px-3 py-6 text-sm transition hover:border-gray-400 focus:border-solid focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75"
+  tabindex="0">
+  <span for="photo-dropbox" class="flex items-center space-x-2">
+    <svg class="h-6 w-6 stroke-gray-400" viewBox="0 0 256 256">
+      <path
+        d="M96,208H72A56,56,0,0,1,72,96a57.5,57.5,0,0,1,13.9,1.7"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="24"></path>
+      <path
+        d="M80,128a80,80,0,1,1,144,48"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="24"></path>
+      <polyline
+        points="118.1 161.9 152 128 185.9 161.9"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="24"></polyline>
+      <line
+        x1="152"
+        y1="208"
+        x2="152"
+        y2="128"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="24"></line>
+    </svg>
+    <span class="text-xs font-medium text-gray-600">
+      charger une image
+      <span class="text-blue-600 underline">browse</span>
+    </span>
+  </span>
+  <input id="{{$nameInput}} " type="file" name="{{$nameInput}}" />
+</label>
